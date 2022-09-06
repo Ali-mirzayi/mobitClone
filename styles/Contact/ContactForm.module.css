@@ -1,0 +1,50 @@
+.div{
+    margin:.8rem auto;
+    width:100%;
+}
+
+.div1{
+    margin:.8rem auto;
+    width:100%;
+}
+
+.lol{
+    width: 100%;
+}
+
+.btn{
+    background-color:#1565c0;
+    color:white;
+    border-radius:15px;
+    padding:10px 50px;
+    font-size:20px;
+    margin-right: 20px;
+}
+
+@media only screen and (min-width:800px) {
+    .section{
+        padding:0 5rem;
+    }    
+    .lol{
+        width: 28vw;
+    }
+    .flex{
+        display:flex;
+        justify-content:space-between;
+    }
+    .div1{
+        width:fit-content;
+        margin:0;
+    }
+    
+}
+@media only screen and (min-width:1000px) {
+    .lol{
+        width: 30vw;
+    }
+}
+@media only screen and (min-width:1300px) {
+    .lol{
+        width: 33vw;
+    }
+}

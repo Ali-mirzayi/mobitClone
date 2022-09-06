@@ -1,0 +1,20 @@
+.readmore{
+    height:2.5rem;
+     line-height:1.4rem;
+    overflow:hidden;
+}
+
+.readmore::before{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 55%;
+    background:linear-gradient(transparent,#eceff1);
+    background:linear-gradient(transparent,#607d8b);
+}
+
+.none{
+    display:block;
+}

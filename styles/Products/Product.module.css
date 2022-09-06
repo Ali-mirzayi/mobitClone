@@ -1,0 +1,107 @@
+.mySwiper {
+    width: 90vw;
+    height: 60vw;
+  }
+
+  
+@media only screen and (min-width: 800px){
+    .mySwiper {
+      width: 45vw;
+      height: 30vw;
+    }
+  }
+  
+  .swiperSlide {
+    text-align: center;
+    font-size: 18px;
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+  }
+  
+  .img {
+    display: block;
+    border-radius: 10px;
+  }
+  
+  /* .color{
+    width:30px;
+    height:30px;
+    background-color:blue;
+    border-radius:7px;
+    border:1px solid white;
+    margin:20px;
+  }
+
+  .colorr{
+    width:30px;
+    height:30px;
+    background-color:blue;
+    border-radius:7px;
+    border:1px solid white;
+    margin:20px;
+    scale: 1.1;
+    transition: all 0.2s linear;
+  } */
+
+.inActive{
+  display: inline-block;
+  width:2rem;
+  height:2rem;
+  background-color:#222;
+  border-radius:10px;
+  opacity:0.5;
+  scale:1;
+  display:flex;
+  margin:5px;
+  justify-content: center;
+  align-items: center;
+  cursor:pointer;
+  border: none;
+  transform: all 1.5s linear;
+}
+
+.active{
+  opacity:1;
+  scale:1.3;
+  animation:active 0.3s linear;
+}
+
+@keyframes active{
+  from{scale:1;}
+  to{scale:1.3;}
+}
+
+.secIntro{
+  height: 40px;
+  width:90vw;
+  margin:10px auto;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  background: transparent;
+}
+
+.disCount{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:1;
+  /* color:#ffffff; */
+  width:fit-content;
+  border-radius: 10px;
+  padding:0 0.2em;
+  margin:0.5em;
+}
+/* #e0f2f1 */
+/* #000428 */
