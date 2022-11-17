@@ -1,0 +1,26 @@
+.div:nth-child(odd){
+    background-color: rgb(134, 134, 134);
+    color:black;
+}
+
+.container{
+    padding:0;
+}
+
+/* .container div{
+    padding: 0.5rem;
+    border-radius: 0.75rem;
+    margin:0 20px;
+} */
+
+.div{
+    padding: 0.5rem;
+    border-radius: 0.75rem;
+    margin:0 20px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: 0.25rem;
+}
+.div2{
+    grid-column: span 2 / span 2;
+}

@@ -1,0 +1,29 @@
+.disCount{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:1;
+    width:fit-content;
+    border-radius: 10px;
+    padding:0 0.2em;
+    margin-right:0.5em;
+  }
+
+  .flex{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+  }
+  
+  .counter{
+    display:block;
+  }
+
+  @media only screen and (min-width:1000px) {
+    .counter{
+        display:flex;
+        flex-direction: row-reverse;
+        justify-content:space-between;
+        align-items:center;
+      }
+  }

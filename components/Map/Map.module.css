@@ -1,0 +1,11 @@
+.leafletContainer {
+    width: 70vw;
+    height: 40vw;
+  }
+  
+  @media only screen and (min-width:1200px) {
+    .leafletContainer {
+      width: 75vw;
+      height: 40vw;
+    }
+  }

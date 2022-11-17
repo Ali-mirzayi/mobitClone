@@ -1,0 +1,51 @@
+
+.paper{
+    position:relative;
+    visibility:hidden;
+    border-radius: 10px;
+}
+
+
+.discountContainer{
+    display:flex;
+    align-items:center;
+    width:80%;
+    position:absolute;
+    top:15px;
+    right:15px;
+    z-index:1;
+    color:#ffffff
+}
+
+.discount{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:20px;
+    border-radius:5px;
+    padding:2px;
+    padding-right:4px;
+}
+
+.imageContainer{
+    border-radius:10px;
+    overflow:hidden;
+    height:150px;
+    cursor:pointer;
+}
+
+.image{
+    transition:all 0.3s ease;
+}
+
+@media only screen and (min-width:450px){
+    .paper{
+        padding:10px;
+    }
+    .paper:hover{
+        visibility:visible;
+    }
+    .image:hover{
+        transform: scale(1.1);
+    }
+}

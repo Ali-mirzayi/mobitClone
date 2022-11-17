@@ -1,0 +1,46 @@
+.div {
+    width: 44vw;
+     height: 34vw;
+     position:relative;
+     border-radius:10px;
+     overflow:hidden;
+}
+
+.img{
+    transition:all 0.3s ease;
+}
+
+
+.p{
+    position: absolute;
+    top:70%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    color: white;
+    font-size: 1.5em;
+    opacity: 0;
+    transition:all 0.3s ease;
+}
+
+.div:hover .img {
+    transform: scale(1.1);
+    filter: grayscale(100%) blur(1px);
+    -webkit-filter: grayscale(100%) blur(1px);
+}
+
+.div:hover .p {
+    opacity: 1;
+}
+
+@media only screen and (min-width: 800px){
+    .div{display:none;}
+}
+@media only screen and (max-width: 460px){
+    .div{font-size:12px}
+}
+@media only screen and (max-width: 400px){
+    .div{font-size:10px}
+}
+@media only screen and (max-width: 290px){
+    .div{font-size:8px}
+}
