@@ -1,0 +1,45 @@
+.container{
+    width: 90vw;
+    height: 3rem;
+    border-radius: 0.75rem;
+    padding:0 .4rem;
+    font-size: 25px;
+    box-sizing: content-box;
+    /* font-family: 'Markazi Text', serif; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color:#3f434d;
+    margin:20px auto;
+    line-height: 1.3em;
+}
+
+@media only screen and (min-width:525px) {
+    .container{ font-size: 35px;padding:0.7rem;}
+    .span{ width: 45px !important; margin:0 7px !important;}
+    .p{margin-right:10px;font-size:30px !important; }
+    .icon{margin-right:10px; font-size:35px !important;}
+}
+
+.twonumbers {
+    display: inline-block;
+    width: 2ch;
+}
+
+.span{
+    width: 30px;
+    background-color: #ffffff;
+    display: inline-block;
+    text-align: center;
+    border-radius: 10px;
+    margin:0 2px;
+}
+
+.p{ 
+    color:#ffffff;
+    font-size:20px;
+}
+.icon{ 
+    color:#ffffff;
+    font-size:25px;
+}

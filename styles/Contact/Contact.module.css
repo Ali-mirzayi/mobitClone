@@ -1,0 +1,25 @@
+.container{
+    display: flex;
+    align-items: center ;
+    justify-content:flex-start;
+    overflow: auto;
+}
+
+.container::-webkit-scrollbar {
+    height: 0;
+}
+.icons{
+    margin-left:20px;
+}
+
+.flex{
+    margin: 0;
+    display: flex;
+    align-items: center;
+    width: 43%;
+}
+@media only screen and (max-width:500px) {
+    .icons{
+        display:none;
+    }
+}
