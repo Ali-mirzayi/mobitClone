@@ -1,0 +1,35 @@
+.counter{
+    position: relative;
+    margin-top: -7px;
+    background-size: cover!important;
+    background: url(https://www.mobit.ir/_nuxt/img/promotion-bg-desktop.8192065.png) 50% no-repeat;
+    min-height: 17rem;
+}
+
+.icon{ 
+    color:#ffffff;
+    position: absolute;
+}
+
+.productCategory{
+    width:100%;
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    justify-items: center;
+    text-align: center;
+}
+
+@media only screen and (min-width:525px) {
+    .productCategory{grid-template-columns: repeat(2, minmax(0, 1fr))}
+}
+
+@media only screen and (min-width:800px) {
+    .counter{
+        margin-top: -95px;
+    }
+    .productCategory{grid-template-columns: repeat(3, minmax(0, 1fr))}
+}
+
+@media only screen and (min-width:1100px){
+    .productCategory{grid-template-columns: repeat(4, minmax(0, 1fr))}
+}

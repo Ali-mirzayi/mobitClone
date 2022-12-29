@@ -1,0 +1,45 @@
+.container{
+    position: fixed;
+    z-index: 10;
+    width: 70vw;
+    top: 93px;
+    left: 50%;
+    transform: translate(-50%);
+    transition: 0.4s ease;
+    border-radius: 0 0 10px 10px;
+}
+
+.hide{
+    position: fixed;
+    z-index: 10;
+    width: 70vw;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%);
+    transition: 0.5s ease-in;
+}
+
+.ul{
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+}
+
+.li{
+    margin:3px 10px 0;
+    font-size: 25px;
+}
+
+.active{
+    background-color: rgb(255, 203, 140);
+    border-radius: 10px;
+    padding: 0 5px;
+}
+
+@media only screen  and (min-width: 800px){
+    .container{
+        top: 78px;
+    }
+}

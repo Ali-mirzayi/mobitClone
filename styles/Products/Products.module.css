@@ -1,0 +1,18 @@
+.container{
+    width: 90vw;
+    margin: auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    /* padding: 5px; */
+}
+
+.item:hover{
+    color: rgb(255, 0, 0);
+}

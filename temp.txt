@@ -1,0 +1,20 @@
+MuiAccordionSummary-expandIconWrapper css-1n3veo1
+
+MuiAccordionSummary-content MuiAccordionSummary-contentGutters css-17o5nyn
+
+
+// sx={{"& .css-o4b71y-MuiAccordionSummary-content":{flexDirection:"column"},
+// "& .css-yw020d-MuiAccordionSummary-expandIconWrapper":{position:"absolute",top:"0.7rem",right:"0.7rem"},
+// "& .css-19hn6xk-MuiAccordionSummary-expandIconWrapper":{position:"absolute",top:"0.7rem",right:"0.7rem"},
+// margin:"20px"
+// }}
+
+
+
+        <Box
+            sx={{
+                "& .MuiAccordionSummary-content": { flexDirection: "column" },
+                "& .MuiAccordionSummary-expandIconWrapper": { position: "absolute", top: "0.7rem", right: "0.7rem" },
+                margin: "20px"
+            }}
+        >

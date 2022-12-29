@@ -1,0 +1,43 @@
+/* a */
+.container {
+  margin:20px .7rem; 
+  display: inline-block;
+}
+
+@media only screen and (min-width:1080px) {
+  .scrollmenu {
+    overflow: visible;
+    display:flex;
+    align-items: center;
+  justify-content: space-evenly;
+  }
+}
+
+/* a:hover */
+.container:hover {
+  transform: scale(1.1);
+  transition:all 0.3s ease; 
+}
+
+/* Box */
+.scrollmenu {
+  overflow: auto;
+  white-space: nowrap;
+  width: 80vw;
+  margin: auto;
+}
+
+
+.scrollmenu::-webkit-scrollbar {
+  height: 5px;
+  border-radius: 12px;
+}
+
+.scrollmenu::-webkit-scrollbar-thumb {
+  border-radius: 12px;
+}
+
+.img{
+  border-radius:10px;
+  overflow:hidden;
+}

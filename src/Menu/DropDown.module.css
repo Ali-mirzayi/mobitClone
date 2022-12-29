@@ -1,0 +1,25 @@
+.active{
+    background:black;
+    top:50px;
+    position:absolute;
+    width:8rem;
+    font-size:20px;
+    cursor:pointer;
+    padding:0;
+}
+
+.inactive{
+    display:none;
+}
+
+.item{
+    text-align:left;
+    width:100%;
+    display:block;
+    padding-left: 10px;
+    list-style:none;
+}
+
+.item:hover{
+    background-color:rgb(55, 55, 55)
+}

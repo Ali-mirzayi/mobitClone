@@ -1,0 +1,19 @@
+.twonumbers {
+    display: inline-block;
+    width: 2ch;
+}
+
+.span{
+    width: 40px;
+    background-color: #ffffff;
+    display: inline-block;
+    text-align: center;
+    border-radius: 10px;
+    color:#000000;
+    margin:0 2px;
+    font-size: 25px;
+}
+
+@media only screen and (min-width:525px) {
+    .span{ width: 50px !important; margin:0 7px !important;}
+}
