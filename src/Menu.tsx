@@ -39,9 +39,7 @@ function Menu({ pop }: any) {
                 <li className={styles.menuItem} style={{marginBottom:"30px"}}>
                     <Link href="/" passHref>
                         <div style={{display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center"}}>
-                            <a>
-                               <Image width={80} height={80} src="/gta-home.png" alt="logo" />
-                            </a>
+                            <Image width={80} height={80} src="/gta-home.png" alt="logo" />
                             <Divider sx={{ width: "200px" }} />
                         </div>
                     </Link>

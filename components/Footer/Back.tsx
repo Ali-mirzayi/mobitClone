@@ -25,7 +25,7 @@ function Back() {
                 </div>
             </div>
             <div className={styles.grid}>
-                    {data.map((image, i) => (<div style={{ display: 'flex', flexDirection: 'column', margin: '0 20px' }} key={i}><Image src={image.image} width={64} height={64} alt="" className={styles.image} /><p>{image.label}</p></div>))}
+                    {data.map((image, i) => (<div style={{ display: 'flex', flexDirection: 'column', margin: '0 20px',alignItems:"center" }} key={i}><Image src={image.image} width={64} height={64} alt="" className={styles.image} /><p>{image.label}</p></div>))}
             </div>
         </Box>
     </section>

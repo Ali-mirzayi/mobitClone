@@ -35,12 +35,22 @@
     justify-content: space-evenly;
   }
 
+  .emtyimg{
+    position:relative;
+    width:50vw;
+    height:50vw;
+  }
+
   @media only screen and (min-width:1000px) {
     .counter{
         display:flex;
         flex-direction: row-reverse;
         justify-content:space-between;
         align-items:center;
+      }
+      .emtyimg{
+        width:25vw;
+        height:25vw;
       }
   }
 

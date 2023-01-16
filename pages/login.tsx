@@ -128,7 +128,7 @@ function Login() {
                         </IconButton>
                     </div>
                     <Button type="submit" sx={{ "&:hover": { backgroundColor: 'blue' }, display: "block", margin: 2, backgroundColor: 'blueviolet', fontSize: "20px" }} >ورود به حساب</Button>
-                    <Link href="/signup" passHref><a><p className={styles.signup}>ثبت نام</p></a></Link>
+                    <Link href="/signup"><p className={styles.signup}>ثبت نام</p></Link>
                 </form>
             </Paper>
             <div>

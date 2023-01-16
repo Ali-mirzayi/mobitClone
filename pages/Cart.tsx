@@ -2,14 +2,14 @@ import Head from 'next/head';
 import React from 'react';
 import { useRecoilState,useResetRecoilState } from 'recoil';
 import { Products } from '../Atoms';
-import ImageWithFallback from '../src/utils/ImageWithFallback';
 import { Box, Button } from "@mui/material";
 import styles from '../styles/Cart/Cart.module.css';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import PercentSharpIcon from '@mui/icons-material/PercentSharp';
 import dynamic from 'next/dynamic'
-import Image from 'next/image';
 import Link from 'next/link';
+import Image from 'next/image';
+import ImageWithFallback from '../src/utils/ImageWithFallback';
 
 const Modal = dynamic(() => import('../src/utils/Modal'), {
     ssr: false,
@@ -90,7 +90,9 @@ function Cart() {
         product[0].id === 0
             ?
             <div style={{width:"80vw",display:"flex",flexDirection:"column",alignItems:'center',margin:"150px auto 380px"}}>
-                <Image width="140vw" height="140vw" priority src="https://www.mobit.ir/_nuxt/img/emptyCategory.755ad14.svg"/>
+                    <div className={styles.emtyimg}>
+                        <Image fill priority src="https://www.mobit.ir/_nuxt/img/emptyCategory.755ad14.svg" alt="cart is empty"/>
+                    </div>
                 <h1 style={{textAlign:'center',fontSize:'2rem'}}>سبد خرید خالی است</h1>
                 <Link href="/"><Button sx={{backgroundColor:"info.main","&:hover":{backgroundColor:"grey.900"} ,color:"white", height:"100%",width:"40vw",lineHeight:"2"}}><h3 style={{margin:0}}>خرید</h3></Button></Link>
             </div>

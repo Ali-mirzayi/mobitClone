@@ -41,7 +41,7 @@ const IntroSlider = ({images}:Props) => {
         className={styles.mySwiper}
       >
         {images.map((image,i)=>(
-            <SwiperSlide className={styles.swiperSlide} key={i}><ImageWithFallback src={image} alt="" layout="fill" className={styles.img} priority/></SwiperSlide>
+            <SwiperSlide className={styles.swiperSlide} key={i}><ImageWithFallback src={image} alt="" fill className={styles.img} priority/></SwiperSlide>
         ))}
       </Swiper>
   );

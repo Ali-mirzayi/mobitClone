@@ -1,5 +1,5 @@
 function countdownTimestampMs() {
-    return 1672123662000;
+    return 1679123662000;
 }
 
 export default countdownTimestampMs;

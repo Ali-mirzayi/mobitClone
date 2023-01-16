@@ -13,14 +13,12 @@ function NotFound() {
         </Head>
             <h1 style={{ textAlign: "center", fontSize: "7vw" }}>Page Not Found</h1>
             <div style={{ position: "relative", width: "40vw", height: "40vw", margin: "auto" }}>
-                <Image src="https://www.mobit.ir/_nuxt/img/error-404.0f46f2e.svg" priority layout="fill" alt="404page" />
+                <Image src="https://www.mobit.ir/_nuxt/img/error-404.0f46f2e.svg" priority fill alt="404page" />
             </div>
             <div style={{ width: "100vw" }}>
                 <Button sx={{ margin: "auto", backgroundColor: "info.main", "&:hover": { backgroundColor: "grey.900" }, color: "white", width: "30vw", position: "absolute", left: 0, right: 0, padding: "7px" }}>
                     <Link href="/">
-                        <a>
                             <h3 style={{ margin: 0 }}>Go back home</h3>
-                        </a>
                     </Link>
                 </Button>
             </div>

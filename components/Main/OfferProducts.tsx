@@ -1,11 +1,9 @@
 import { Box } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
 import { useQuery } from 'react-query';
-// import CountdownTimer from 'src/CountdownTimer';
 import CountdownTimer from '../../src/CountdownTimer';
 import styles from '../../styles/Main/OfferProducts.module.css';
 import React from "react";
-// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles

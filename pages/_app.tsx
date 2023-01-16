@@ -1,13 +1,12 @@
 import React, { useState, useMemo } from "react";
+import Head from 'next/head'
 import type { AppProps } from 'next/app';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import { ThemeProvider, CssBaseline, createTheme } from '@mui/material';
 import Layout from "../components/Headers/Layout";
 import NextNProgress from "nextjs-progressbar";
-import { QueryClientProvider , QueryClient , Hydrate} from 'react-query';
-import {RecoilRoot} from 'recoil';
-import { useSetRecoilState } from 'recoil';
-import { DarkModeSwicher } from '../Atoms';
+import { QueryClientProvider, QueryClient, Hydrate } from 'react-query';
+import { RecoilRoot } from 'recoil';
 
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
@@ -29,34 +28,37 @@ const MyApp: React.FC<MyAppProps> = (props) => {
   //initial theme
   const [dark, setDark] = useState(darkTheme);
 
-  const [queryClient] = useState (() => 
-  new QueryClient({
-    defaultOptions: {
-      queries: {
-        staleTime: 20 * 1000,
+  const [queryClient] = useState(() =>
+    new QueryClient({
+      defaultOptions: {
+        queries: {
+          staleTime: 20 * 1000,
+        },
       },
-    },
-  })
-)
+    })
+  )
   const theme = useMemo(() => createTheme(dark), [dark])
 
 
   return (
     <RecoilRoot>
-      <NextNProgress color="#8A2BE2" height={5}/>
-        <QueryClientProvider client={queryClient} >
-          <Hydrate state={pageProps.dehydratedState}>
-            <CacheProvider value={emotionCache}>
-              <ThemeProvider theme={theme}>
-                <Layout setDark={setDark}>
-                  <CssBaseline />
-                  <Component {...pageProps} />
-                </Layout>
-               </ThemeProvider>
-            </CacheProvider>
-          </Hydrate>
-        </QueryClientProvider>
-      </RecoilRoot>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+      </Head>
+      <NextNProgress color="#8A2BE2" height={5} />
+      <QueryClientProvider client={queryClient} >
+        <Hydrate state={pageProps.dehydratedState}>
+          <CacheProvider value={emotionCache}>
+            <ThemeProvider theme={theme}>
+              <Layout setDark={setDark}>
+                <CssBaseline />
+                <Component {...pageProps} />
+              </Layout>
+            </ThemeProvider>
+          </CacheProvider>
+        </Hydrate>
+      </QueryClientProvider>
+    </RecoilRoot>
   );
 };
 

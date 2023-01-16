@@ -12,6 +12,7 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Promotion from "../src/Promotion/Promotion";
+import axios from "axios";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
@@ -137,12 +138,12 @@ function Offers({ products }: any) {
 
 export default Offers;
 
-export async function getStaticProps() {
-    const response = await fetcher("https://api.escuelajs.co/api/v1/products")
+export async function getServerSideProps() {
+    const response = await axios.get("https://api.escuelajs.co/api/v1/products")
 
     return {
         props: {
-            products: response
+            products: response.data
         }
     }
 }

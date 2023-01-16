@@ -16,7 +16,7 @@ function ProductBox({item}:any) {
                 </div>
                 <Link href={`/products/${item.id}`} passHref>
                         <div className={styles.imageContainer}>
-                            <ImageWithFallback src={item.images[0]} alt="" layout="fill" className={styles.image} />
+                            <ImageWithFallback src={item.images[0]} fill alt="" className={styles.image} />
                         </div>
                 </Link>
                 <p style={{ marginRight: '20px' }}>{item.title}</p>

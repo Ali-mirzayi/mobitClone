@@ -1,5 +1,24 @@
+import { Button } from '@mui/material';
 import Head from 'next/head';
+import axios from 'axios';
+import { useEffect } from 'react';
 function Dashboard() {
+    const fetched = async () => {
+        const response = await axios.get('https://api.escuelajs.co/api/v1/products/55');
+        // console.log(response.data);
+        // const paths = response.data.map((item: any) => {
+        //     return {
+        //         params: {
+        //             id: `${item.id}`
+        //         }
+        //     }
+        // })
+        console.log(response.data);
+    }
+    useEffect(() => {
+        fetched();
+    }, [])
+
     return (
         <div>
             <Head>
@@ -9,7 +28,8 @@ function Dashboard() {
                 <link rel="icon" href="/gta-home-logo.jpg" />
             </Head>
             <div style={{ minHeight: "100vh", fontSize: "4rem", textAlign: "center", margin: "7rem auto" }}>
-                Dashboard
+                <h1>Dashboard</h1>
+                {/* <Button sx={{backgroundColor:"white"}} onClick={fetched}>hiii</Button> */}
             </div>
         </div>
     )

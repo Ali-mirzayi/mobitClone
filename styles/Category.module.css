@@ -4,6 +4,18 @@
   display: inline-block;
 }
 
+.img{
+  width:6rem;
+  height:4rem;
+}
+
+@media only screen and (min-width:500px) {
+  .img{
+    width:9rem;
+    height:6rem;
+  }
+}
+
 @media only screen and (min-width:1080px) {
   .scrollmenu {
     overflow: visible;

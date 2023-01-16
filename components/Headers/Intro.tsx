@@ -9,7 +9,7 @@ import ImageWithFallback from '../../src/utils/ImageWithFallback';
 const Intro = () => {
     const fetcher = (url: string) => fetch(url).then((res) => res.json());
     const { data, isError, isLoading } = useQuery('Intro', () => fetcher('https://api.escuelajs.co/api/v1/products/20'))
-    const { data: watch, isError: error, isLoading: loading } = useQuery('MissingIntro', () => fetcher('https://api.escuelajs.co/api/v1/products/21'))
+    const { data: watch, isError: error, isLoading: loading } = useQuery('MissingIntro', () => fetcher('https://api.escuelajs.co/api/v1/products/24'))
     if (isError || error) return <div>an error has occured.</div>;
     if (isLoading || loading) return <div style={{ display: "flex", width: "60vw", height: "40vw", justifyContent: "space-between", alignItems: 'center', margin: 'auto' }} ><CircularProgress size="5em" /><CircularProgress size="7em" /><CircularProgress size="5em" /></div>;
     const images: string[] = data.images;
@@ -19,7 +19,7 @@ const Intro = () => {
         <div className={styles.container}>
             <Link href={`/categories/${watch.category.name}`}>
                 <div className={styles.div}>
-                    <ImageWithFallback src={src[0]} alt='' width="22vw" height="17vw" layout='responsive' className={styles.img} />
+                    <ImageWithFallback src={src[0]} alt='' fill className={styles.img} />
                     <p className={styles.p}>{watch.category.name}</p>
                 </div>
             </Link>
@@ -28,7 +28,7 @@ const Intro = () => {
             </a>
             <Link href={`/categories/${watch.category.name}`}>
                 <div className={styles.div}>
-                    <ImageWithFallback src={src[2]} alt='' width="22vw" height="17vw" layout='responsive' className={styles.img} />
+                    <ImageWithFallback src={src[2]} alt='' fill className={styles.img} />
                     <p className={styles.p}>{watch.category.name}</p>
                 </div>
             </Link>

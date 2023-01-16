@@ -5,12 +5,9 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import { useQuery } from 'react-query';
-
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
+import axios from 'axios';
 
 function ProductsList({ products }: any) {
-    const { data } = useQuery(['AllProducts'] , () => fetcher("https://api.escuelajs.co/api/v1/products"))
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const [selected, setSelected] = React.useState<string>("ترتیب");
     const open = Boolean(anchorEl);
@@ -85,8 +82,8 @@ function ProductsList({ products }: any) {
         {products?.map((item: any) => (
             <div key={item.id} style={{ width: "90vw",margin: "auto" }}>
                 <div className={styles.item}>
-                    <Link href={`products/${item.id}`} passHref><a>{item.title}</a></Link>
-                    <Link href={`products/${item.id}`} passHref><a>{item.price}</a></Link>
+                    <Link href={`products/${item.id}`} passHref>{item.title}</Link>
+                    <Link href={`products/${item.id}`} passHref>{item.price}</Link>
                 </div>
                 <hr style={{ borderWidth: "0.1px" }} />
             </div>
@@ -97,12 +94,12 @@ function ProductsList({ products }: any) {
 
 export default ProductsList;
 
-export async function getStaticProps() {
-    const response = await fetcher("https://api.escuelajs.co/api/v1/products")
+export async function getServerSideProps() {
+    const response = await axios.get("https://api.escuelajs.co/api/v1/products")
 
     return {
         props: {
-            products: response
+            products: response.data
         }
     }
 }

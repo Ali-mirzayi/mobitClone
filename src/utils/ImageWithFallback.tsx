@@ -26,7 +26,7 @@ const ImageWithFallback = (props:any) => {
     useEffect(() => {
       if(src?.includes('api.lorem.space')){setImgSrc(src)}else{setImgSrc("/mockImage.jpg")}
     },[src]);
-    const [imgSrc, setImgSrc] = useState("/wait.png");
+    const [imgSrc, setImgSrc] = useState(`data:image/svg+xml;base64,${toBase64(shimmer(500, 900))}`);
 
     return (
         <Image

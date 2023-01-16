@@ -15,11 +15,11 @@ const Home: NextPage = () => {
         <meta name="description" content="its my mobit clone" />
         <link rel="icon" href="/gta-home-logo.jpg" />
       </Head>
-       <Intro />
-       <Category />
-       <MissingIntro />
-       <OfferProducts />
-      </>
+      <Intro />
+      <Category />
+      <MissingIntro />
+      <OfferProducts />
+    </>
   )
 }
 

@@ -45,9 +45,9 @@ function Navar({ setDark }: props) {
         </IconButton>
         <Menu pop={[closeMenu, setCloseMenu]} />
         <Link href="/" passHref>
-          <a className={styles.logo1} >
-            <Image src="/gta-home.png" width="50" height="50" alt="logo" />
-          </a>
+          <div className={styles.logo1} >
+            <Image src="/gta-home.png" width={50} height={50} alt="logo" />
+          </div>
         </Link>
         <IconButton onClick={() => { changeTheme() }} sx={{ m: "0 10px" }}>
           {isDarkTheme === true ? <LightModeIcon className={styles.icons} sx={{ color: yellow[700] }} /> : <NightsStayIcon className={styles.icons} sx={{ color: blueGrey[100] }} />}
@@ -57,9 +57,9 @@ function Navar({ setDark }: props) {
       <Divider sx={{margin:"0 2em"}} />
       <div className={styles.section}>
         <Link href="/" passHref>
-          <a className={styles.logo2}>
-            <Image src="/gta-home.png" width="70" height="70" alt="logo" />
-          </a>
+          <div className={styles.logo2}>
+            <Image src="/gta-home.png" width={70} height={70} alt="logo" />
+          </div>
         </Link>
         <div style={{ width: "500px" }}>
           <Paper dir="rtl" sx={{ backgroundColor: "grey.100" }} elevation={0} className={styles.input} >
