@@ -1,0 +1,27 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    width: 12rem;
+    position: sticky;
+    top: 90px;
+    z-index: 4;
+    padding: 20px;
+    border-radius: 10px;
+    margin:50px auto;
+    left: 0;
+    right: 0;
+}
+
+.disCount {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    width: fit-content;
+    border-radius: 10px;
+    padding: 0 0.2em;
+    margin: 0 0.5em;
+    font-size: "30px";
+}

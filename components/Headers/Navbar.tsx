@@ -15,8 +15,8 @@ import Link from "next/link";
 import styles from "../../styles/Navbar.module.css"
 import Image from "next/image";
 import MenuIcon from '@mui/icons-material/Menu';
-import Menu from "../../src/Menu";
-import DescMenu from "../../src/Menu/DescMenu";
+import Menu from "./Menu";
+import DescMenu from "./DescMenu";
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { useSetRecoilState } from 'recoil';
 import { DarkModeSwicher } from '../../Atoms';
@@ -35,12 +35,12 @@ function Navar({ setDark }: props) {
     setDarkMode(isDarkTheme);
     isDarkTheme ? setDark(darkTheme) : setDark(lightTheme)
   };
-  
-  
+
+
   return (<>
-    <Paper dir="rtl" elevation={2} sx={{backgroundColor: "grey.50", position:"fixed", width: "100vw", zIndex:999, top:0 }}>
+    <Paper dir="rtl" elevation={2} sx={{ backgroundColor: "grey.50", position: "fixed", width: "100vw", zIndex: 999, top: 0 }}>
       <div className={styles.phoneResponsive} >
-        <IconButton sx={{padding:0,mr:"15px"}} onClick={() => { setCloseMenu(true) }}>
+        <IconButton sx={{ padding: 0, mr: "15px" }} onClick={() => { setCloseMenu(true) }}>
           <MenuIcon fontSize="large" />
         </IconButton>
         <Menu pop={[closeMenu, setCloseMenu]} />
@@ -54,7 +54,7 @@ function Navar({ setDark }: props) {
         </IconButton>
       </div>
       {/* endphone */}
-      <Divider sx={{margin:"0 2em"}} />
+      <Divider sx={{ margin: "0 2em" }} />
       <div className={styles.section}>
         <Link href="/" passHref>
           <div className={styles.logo2}>
@@ -67,7 +67,7 @@ function Navar({ setDark }: props) {
               <SearchIcon />
             </IconButton>
             <InputBase
-              sx={{width:"85%"}}
+              sx={{ width: "85%" }}
               className={styles.InputBase}
               placeholder="جستجو"
               inputProps={{ 'aria-label': 'جستجو' }}
@@ -81,9 +81,9 @@ function Navar({ setDark }: props) {
           <Link href="/login" className={styles.item} >
             <Chip label="ورود" sx={{ fontSize: "15px", ".MuiChip-label": { padding: "10px 1vw" } }} icon={<PersonIcon sx={{ p: "10px", paddingLeft: 0, boxSizing: "content-box", color: 'grey.300' }} />} />
           </Link>
-          <Link href="/Cart" passHref>
-            <IconButton sx={{margin:"10px"}}>
-              <LocalGroceryStoreIcon className={styles.item} sx={{ fontSize:"1.2em !important" }} />
+          <Link href="/cart" passHref>
+            <IconButton sx={{ margin: "10px" }}>
+              <LocalGroceryStoreIcon className={styles.item} sx={{ fontSize: "1.2em !important" }} />
             </IconButton>
           </Link>
           <IconButton onClick={() => { changeTheme() }} className={styles.darkmode} >

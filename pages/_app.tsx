@@ -3,7 +3,7 @@ import Head from 'next/head'
 import type { AppProps } from 'next/app';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import { ThemeProvider, CssBaseline, createTheme } from '@mui/material';
-import Layout from "../components/Headers/Layout";
+import Layout from "../components/Layout";
 import NextNProgress from "nextjs-progressbar";
 import { QueryClientProvider, QueryClient, Hydrate } from 'react-query';
 import { RecoilRoot } from 'recoil';
@@ -43,7 +43,7 @@ const MyApp: React.FC<MyAppProps> = (props) => {
   return (
     <RecoilRoot>
       <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <NextNProgress color="#8A2BE2" height={5} />
       <QueryClientProvider client={queryClient} >

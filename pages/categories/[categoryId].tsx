@@ -1,8 +1,8 @@
 import Head from 'next/head';
 import styles from "../../styles/Categories/CategoryId.module.css";
 import { Box } from '@mui/material';
-import ImageWithFallback from "../../src/utils/ImageWithFallback";
-import ProductBox from "../../src/utils/ProductBox";
+import ImageWithFallback from "../../src/ImageWithFallback";
+import ProductBox from "../../src/ProductBox";
 import axios from 'axios';
 
 function Category({ category }: any) {

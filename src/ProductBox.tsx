@@ -1,9 +1,9 @@
 import styles from "./ProductBox.module.css";
 import { Box, Paper } from '@mui/material';
 import Link from "next/link";
-import ImageWithFallback from '../../src/utils/ImageWithFallback';
+import ImageWithFallback from './ImageWithFallback';
 import PercentSharpIcon from '@mui/icons-material/PercentSharp';
-function ProductBox({item}:any) {
+function ProductBox({ item }: any) {
     return (
         <Paper elevation={3} className={styles.paper}>
             <div style={{ visibility: 'visible' }}>
@@ -15,9 +15,9 @@ function ProductBox({item}:any) {
                     <div style={{ width: '30px', height: '30px' }} />
                 </div>
                 <Link href={`/products/${item.id}`} passHref>
-                        <div className={styles.imageContainer}>
-                            <ImageWithFallback src={item.images[0]} fill alt="" className={styles.image} />
-                        </div>
+                    <div className={styles.imageContainer}>
+                        <ImageWithFallback src={item.images[0]} fill alt="" className={styles.image} />
+                    </div>
                 </Link>
                 <p style={{ marginRight: '20px' }}>{item.title}</p>
                 <div style={{ display: 'flex', flexDirection: 'row-reverse' }}>

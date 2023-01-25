@@ -2,20 +2,20 @@ import styles from '../../styles/MissingIntro.module.css';
 import CircularProgress from '@mui/material/CircularProgress';
 import { useQuery } from 'react-query';
 import Link from 'next/link';
-import ImageWithFallback from "../../src/utils/ImageWithFallback";
+import ImageWithFallback from "../../src/ImageWithFallback";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 function MissingIntro() {
-    const { data, isError, isLoading } = useQuery('MissingIntro', () => fetcher('https://api.escuelajs.co/api/v1/products/24'))
-    if (isError) return <div>an error has occured.</div>;
+    const { data, isError, isLoading , error } = useQuery('MissingIntro', () => fetcher('https://api.escuelajs.co/api/v1/products/24'))
+    if (isError) return <div> <div>an error has occured.</div> <div>Error: {error.message}</div> </div>;
     if (isLoading) return <div style={{ display: "flex", width: "60vw", height: "40vw", justifyContent: "space-between", alignItems: 'center', margin: 'auto' }} ><CircularProgress size="5em" /><CircularProgress size="5em" /></div>;
 
-    const src: any = data.images;
+    const src: any = data?.images;
 
     return (
         <section style={{ display: 'flex', justifyContent: 'space-evenly', marginTop: '20px' }}>
-            <Link href={`/categories/${data.category.name}`}>
+           <Link href={`/categories/${data.category.name}`}>
                 <div className={styles.div}>
                     <ImageWithFallback src={src[0]} alt='' fill className={styles.img} />
                     <p className={styles.p}>{data.category.name}</p>
@@ -27,7 +27,8 @@ function MissingIntro() {
                     <p className={styles.p}>{data.category.name}</p>
                 </div>
             </Link>
-        </section>);
+        </section>
+        );
 }
 
 export default MissingIntro;

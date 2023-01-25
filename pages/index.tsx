@@ -1,8 +1,8 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import Intro from '../components/Headers/Intro';
-import Category from '../components/Headers/Category';
-import MissingIntro from '../components/Headers/MissingIntro';
+import Intro from '../components/Index/Intro';
+import Category from '../components/Index/Category';
+import MissingIntro from '../components/Index/MissingIntro';
 import OfferProducts from '../components/Main/OfferProducts';
 
 const Home: NextPage = () => {

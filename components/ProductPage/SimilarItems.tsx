@@ -13,16 +13,16 @@ import "swiper/css/navigation";
 
 // import required modules
 import { Lazy, Mousewheel, Navigation } from "swiper";
-import ProductBox from '../utils/ProductBox';
+import ProductBox from '../../src/ProductBox';
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 function SimilarItems({ category }: any) {
-    const { data, isLoading } = useQuery(['GetProductsCategory',category], () => fetcher(`https://api.escuelajs.co/api/v1/categories/${category}/products`))
+    const { data, isLoading } = useQuery(['GetProductsCategory', category], () => fetcher(`https://api.escuelajs.co/api/v1/categories/${category}/products`))
     let navigation = false;
-    if (isLoading ) return <div>Loading...</div>;
+    if (isLoading) return <div>Loading...</div>;
 
-    return (<Box sx={{ width: "95%", margin: "20px auto", backgroundColor: "pink",borderRadius:"10px" }}>
+    return (<Box sx={{ width: "95%", margin: "20px auto", backgroundColor: "pink", borderRadius: "10px" }}>
         <Swiper
             dir="rtl"
             lazy={true}

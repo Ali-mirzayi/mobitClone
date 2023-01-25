@@ -1,6 +1,6 @@
 import { CircularProgress, Typography, Box } from "@mui/material";
 import Link from "next/link";
-import ImageWithFallback from "../../src/utils/ImageWithFallback";
+import ImageWithFallback from "../../src/ImageWithFallback";
 import styles from '../../styles/Category.module.css';
 import { useQuery } from 'react-query';
 
@@ -49,7 +49,7 @@ function Category() {
             {categories?.map((item: Arguments) => (
                 <Link key={item.id} href={`/categories/${item.name}`} passHref>
                     <div className={styles.container}>
-                        <div className={styles.img} style={{position:"relative"}}>
+                        <div className={styles.img} style={{ position: "relative" }}>
                             <ImageWithFallback src={item.image} fill alt="" className={styles.img} />
                         </div>
                         <SetName item={item} />

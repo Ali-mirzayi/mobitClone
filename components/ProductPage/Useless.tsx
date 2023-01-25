@@ -1,6 +1,6 @@
 import styles from "./Useless.module.css";
 function Useless() {
-    return (<div>
+    return (<div style={{margin:"0 3rem"}}>
         <div style={{display:"flex",alignItems:"center"}}>
             <div style={{width:"0.5rem",height:"0.5rem",backgroundColor:"blue",borderRadius:"1rem",margin:"0.5rem"}}/>
             <div style={{fontSize:"1.4rem"}}>seen details</div>

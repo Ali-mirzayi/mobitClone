@@ -13,9 +13,12 @@ function ReadMore({ text }: any) {
       margin: 20px auto;
       border-radius: 7px;
       padding: 20px;
-      width: 70vw;
+      width: 80vw;
       position: relative;
-      background-color: ${DarkMode ? '#607d8b' : '#e7e7e7' }
+      background-color: ${DarkMode ? '#607d8b' : '#e7e7e7'};
+      @media (min-width: 768px) {
+        width: 60vw;
+      };
     `
 
     const Paragraph = styled.div`
@@ -24,11 +27,9 @@ function ReadMore({ text }: any) {
     }
    `
 
-    console.log(expanded);
-
     return (
         <Container>
-            <h2 onClick={()=>setExpanded(!expanded)} style={{ margin: "0.5rem 0",cursor:"pointer"}}>{title}</h2>
+            <h2 onClick={() => setExpanded(!expanded)} style={{ margin: "0.5rem 0", cursor: "pointer" }}>{title}</h2>
             <Paragraph className={!expanded ? styles.readmore : styles.none}>{readmore}</Paragraph>
         </Container>
     );

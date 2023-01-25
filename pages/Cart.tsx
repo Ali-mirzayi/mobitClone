@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import React from 'react';
-import { useRecoilState,useResetRecoilState } from 'recoil';
+import { useRecoilState, useResetRecoilState } from 'recoil';
 import { Products } from '../Atoms';
 import { Box, Button } from "@mui/material";
 import styles from '../styles/Cart/Cart.module.css';
@@ -9,9 +9,9 @@ import PercentSharpIcon from '@mui/icons-material/PercentSharp';
 import dynamic from 'next/dynamic'
 import Link from 'next/link';
 import Image from 'next/image';
-import ImageWithFallback from '../src/utils/ImageWithFallback';
+import ImageWithFallback from '../src/ImageWithFallback';
 
-const Modal = dynamic(() => import('../src/utils/Modal'), {
+const Modal = dynamic(() => import('../components/Cart/Modal'), {
     ssr: false,
 })
 
@@ -24,12 +24,12 @@ function Cart() {
     const [index, setIndex] = React.useState<number>(0);
 
     const increment = (i: number) => {
-            const newArr = product.map((object,index) => {
-            if (index === i ) {
-              return {...object, count: product[i].count+1};
+        const newArr = product.map((object, index) => {
+            if (index === i) {
+                return { ...object, count: product[i].count + 1 };
             }
             return object;
-          });
+        });
         setProduct(newArr);
     };
 
@@ -37,25 +37,25 @@ function Cart() {
         if (product[i].count === 1) {
             setOpen(true);
             setIndex(i);
-        }else{
-        const newArr = product.map((object,index) => {
-            if (index === i ) {
-              return {...object, count: product[i].count-1};
-            }
-            return object;
-          });
-        setProduct(newArr);
-    }
+        } else {
+            const newArr = product.map((object, index) => {
+                if (index === i) {
+                    return { ...object, count: product[i].count - 1 };
+                }
+                return object;
+            });
+            setProduct(newArr);
+        }
     };
 
     const removeItem = (i: number) => {
-       const newArr = product.filter((item)=>item!==product[i]);
-       setProduct(newArr);
+        const newArr = product.filter((item) => item !== product[i]);
+        setProduct(newArr);
     };
 
     //payment is total all product with reduction
     const payment = () => {
-        const total:number[] = product.map(i => 
+        const total: number[] = product.map(i =>
             i.price * i.count
         )
         return total.reduce((partialSum, a) => partialSum + a, 0)
@@ -63,22 +63,22 @@ function Cart() {
 
     // advantage of all product
     const advantage = () => {
-        const total:number[] = product.map(i => 
+        const total: number[] = product.map(i =>
             i.price * i.count * (i.id) / 100
-            )
+        )
         return total.reduce((partialSum, a) => partialSum + a, 0)
     }
 
     //price is total all product without reduction
     const price = () => {
-        const total:number[] = product.map(i => 
+        const total: number[] = product.map(i =>
             i.price * i.count * (100 + i.id) / 100
-            )
+        )
         return total.reduce((partialSum, a) => partialSum + a, 0)
     }
 
-    if(!product[0]){resetValue();}
-    
+    if (!product[0]) { resetValue(); }
+
     return (<div>
         <Head>
             <title>Cart</title>
@@ -87,77 +87,77 @@ function Cart() {
             <link rel="icon" href="/gta-home-logo.jpg" />
         </Head>
         {
-        product[0].id === 0
-            ?
-            <div style={{width:"80vw",display:"flex",flexDirection:"column",alignItems:'center',margin:"150px auto 380px"}}>
-                    <div className={styles.emtyimg}>
-                        <Image fill priority src="https://www.mobit.ir/_nuxt/img/emptyCategory.755ad14.svg" alt="cart is empty"/>
-                    </div>
-                <h1 style={{textAlign:'center',fontSize:'2rem'}}>سبد خرید خالی است</h1>
-                <Link href="/"><Button sx={{backgroundColor:"info.main","&:hover":{backgroundColor:"grey.900"} ,color:"white", height:"100%",width:"40vw",lineHeight:"2"}}><h3 style={{margin:0}}>خرید</h3></Button></Link>
-            </div>
-            :
-            product.map((item, i: any) => <div key={i}>
-                <div className={styles.container} style={{ display: 'flex', margin: 'auto', width: '95vw', justifyContent: 'space-between', alignItems: 'center' }} dir='rtl'>
-                    <section style={{ display: 'flex', flexDirection: 'row' }}>
-                        <div style={{ borderRadius: '1rem', overflow: 'hidden', width: '100px', position: 'relative', height: '100px', marginLeft: '0.7rem' }}><ImageWithFallback src={item.images[0]} layout='fill' alt={item.title} /></div>
-                        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
-                            <a>{item.title}</a>
-                            <div className={styles.flex}>unavailable</div>
-                            <Button className={styles.flex} sx={{ "&:hover": { color: 'red', background: 'transparent' } }} onClick={() => { setOpen(true); setIndex(i); }}><DeleteOutlineIcon /><p>حذف</p></Button>
-                        </div>
-                    </section>
-                    <section className={styles.counter}>
-                        <div style={{margin: "1rem"}}>
-                            <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end"}}>
-                                <span style={{ textDecoration: 'line-through', fontSize: "17px" }}>{item.price * (100 + item.id) / 100}</span>
-                                <Box sx={{ backgroundColor: 'error.light', color: "#ffffff" }} className={styles.disCount}>
-                                    <PercentSharpIcon sx={{ fontSize: "14px" }} />
-                                    <span style={{ fontSize: '17px' }}>{item.id}</span>
-                                </Box>
-                            </div>
-                            <div dir="rtl" style={{ textAlign: 'left' }}><span style={{ fontSize: "20px" }}>{item.price}</span><span>&ensp;تومان</span></div>
-                        </div>
-                        <Box className={styles.flex} sx={{ backgroundColor: 'grey.A400', borderRadius: '0.5rem'}}>
-                            <div onClick={() => increment(i)} className={styles.flex} style={{ cursor: 'pointer', width: '2.5rem', height: '2.5rem', fontSize: '2.5rem'  }}>+</div>
-                            <div className={styles.flex} style={{ width: '2.5rem', height: '2.5rem', fontSize: '2rem' }}>{product[i].count}</div>
-                            <div onClick={() => decrement(i)} className={styles.flex} style={{ cursor: 'pointer', width: '2.5rem', height: '2.5rem' }}><Box sx={{ width: '33.33%', height: '0.175rem', backgroundColor: 'grey.A100' }} /></div>
-                        </Box>
-                    </section>
-                </div>
-                <hr />
-            </div>)}{
-                product[0].id === 0
+            product[0].id === 0
                 ?
-                <div/>
+                <div style={{ width: "80vw", display: "flex", flexDirection: "column", alignItems: 'center', margin: "150px auto 380px" }}>
+                    <div className={styles.emtyimg}>
+                        <Image fill priority src="https://www.mobit.ir/_nuxt/img/emptyCategory.755ad14.svg" alt="cart is empty" />
+                    </div>
+                    <h1 style={{ textAlign: 'center', fontSize: '2rem' }}>سبد خرید خالی است</h1>
+                    <Link href="/"><Button sx={{ backgroundColor: "info.main", "&:hover": { backgroundColor: "grey.900" }, color: "white", height: "100%", width: "40vw", lineHeight: "2" }}><h3 style={{ margin: 0 }}>خرید</h3></Button></Link>
+                </div>
                 :
-            <div>
-            <Box sx={{backgroundColor:'grey.100',margin:'30px auto 100px',width:'90%',borderRadius:'10px',padding:'10px'}}>
-                <div className={styles.flex1}>
-                    <div>مبلغ کالا</div>
-                    <div>{price()}تومان</div>
-                </div>
-                <div className={styles.flex1} style={{color:'#ff6b6b'}}>
-                    <div>تخفیف</div>
-                    <div>{advantage()}تومان</div>
-                </div>
-                <div className={styles.flex1}>
-                    <div>هزینه ارسال</div>
-                    <div>در مرحله بعد مشخص می شود</div>
-                </div>
-                <div className={styles.flex1}>
-                    <div>مبلغ قابل پرداخت</div>
-                    <div>{payment()}تومان</div>
-                </div>
-            </Box>
-            <Box sx={{backgroundColor:"grey.100"}} className={styles.payment}>
-                <div style={{direction:'rtl'}}>
-                    <div>مبلغ قابل پرداخت</div>
-                    <div style={{textAlign:"center",fontSize:20}}>{payment()}تومان</div>
-                </div>
-                <Button sx={{backgroundColor:"info.main","&:hover":{backgroundColor:"grey.900"} ,color:"white", width:"40vw",padding:"2px"}}><h2 style={{margin:0}}>ادامه</h2></Button>
-            </Box>
-            </div>}
+                product.map((item, i: any) => <div key={i}>
+                    <div className={styles.container} style={{ display: 'flex', margin: 'auto', width: '95vw', justifyContent: 'space-between', alignItems: 'center' }} dir='rtl'>
+                        <section style={{ display: 'flex', flexDirection: 'row' }}>
+                            <div style={{ borderRadius: '1rem', overflow: 'hidden', width: '100px', position: 'relative', height: '100px', marginLeft: '0.7rem' }}><ImageWithFallback src={item.images[0]} layout='fill' alt={item.title} /></div>
+                            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
+                                <a>{item.title}</a>
+                                <div className={styles.flex}>unavailable</div>
+                                <Button className={styles.flex} sx={{ "&:hover": { color: 'red', background: 'transparent' } }} onClick={() => { setOpen(true); setIndex(i); }}><DeleteOutlineIcon /><p>حذف</p></Button>
+                            </div>
+                        </section>
+                        <section className={styles.counter}>
+                            <div style={{ margin: "1rem" }}>
+                                <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end" }}>
+                                    <span style={{ textDecoration: 'line-through', fontSize: "17px" }}>{item.price * (100 + item.id) / 100}</span>
+                                    <Box sx={{ backgroundColor: 'error.light', color: "#ffffff" }} className={styles.disCount}>
+                                        <PercentSharpIcon sx={{ fontSize: "14px" }} />
+                                        <span style={{ fontSize: '17px' }}>{item.id}</span>
+                                    </Box>
+                                </div>
+                                <div dir="rtl" style={{ textAlign: 'left' }}><span style={{ fontSize: "20px" }}>{item.price}</span><span>&ensp;تومان</span></div>
+                            </div>
+                            <Box className={styles.flex} sx={{ backgroundColor: 'grey.A400', borderRadius: '0.5rem' }}>
+                                <div onClick={() => increment(i)} className={styles.flex} style={{ cursor: 'pointer', width: '2.5rem', height: '2.5rem', fontSize: '2.5rem' }}>+</div>
+                                <div className={styles.flex} style={{ width: '2.5rem', height: '2.5rem', fontSize: '2rem' }}>{product[i].count}</div>
+                                <div onClick={() => decrement(i)} className={styles.flex} style={{ cursor: 'pointer', width: '2.5rem', height: '2.5rem' }}><Box sx={{ width: '33.33%', height: '0.175rem', backgroundColor: 'grey.A100' }} /></div>
+                            </Box>
+                        </section>
+                    </div>
+                    <hr />
+                </div>)}{
+            product[0].id === 0
+                ?
+                <div />
+                :
+                <div>
+                    <Box sx={{ backgroundColor: 'grey.100', margin: '30px auto 100px', width: '90%', borderRadius: '10px', padding: '10px' }}>
+                        <div className={styles.flex1}>
+                            <div>مبلغ کالا</div>
+                            <div>{price()}تومان</div>
+                        </div>
+                        <div className={styles.flex1} style={{ color: '#ff6b6b' }}>
+                            <div>تخفیف</div>
+                            <div>{advantage()}تومان</div>
+                        </div>
+                        <div className={styles.flex1}>
+                            <div>هزینه ارسال</div>
+                            <div>در مرحله بعد مشخص می شود</div>
+                        </div>
+                        <div className={styles.flex1}>
+                            <div>مبلغ قابل پرداخت</div>
+                            <div>{payment()}تومان</div>
+                        </div>
+                    </Box>
+                    <Box sx={{ backgroundColor: "grey.100" }} className={styles.payment}>
+                        <div style={{ direction: 'rtl' }}>
+                            <div>مبلغ قابل پرداخت</div>
+                            <div style={{ textAlign: "center", fontSize: 20 }}>{payment()}تومان</div>
+                        </div>
+                        <Button sx={{ backgroundColor: "info.main", "&:hover": { backgroundColor: "grey.900" }, color: "white", width: "40vw", padding: "2px" }}><h2 style={{ margin: 0 }}>ادامه</h2></Button>
+                    </Box>
+                </div>}
         <Modal useOpen={[open, setOpen]} removeItem={() => removeItem(index)} />
     </div>);
 }
