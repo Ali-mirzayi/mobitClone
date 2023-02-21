@@ -126,7 +126,7 @@ function Offers({ products }: any) {
             </div>
             <div className={styles.productCategory}>
                 {warn?.map((item: any) => (
-                    <div key={item.id} dir='rtl'>
+                    <div key={item.id} dir='rtl' style={{margin:"40px auto"}}>
                         <ProductBox item={item} />
                     </div>
                 ))}
@@ -138,8 +138,7 @@ function Offers({ products }: any) {
 export default Offers;
 
 export async function getServerSideProps(context: any) {
-    const  host  = context.req.headers.host;
-    const response = await axios.get(`http://${host}/api/products`);
+    const response = await axios.get("https://api.escuelajs.co/api/v1/products")
 
     return {
         props: {

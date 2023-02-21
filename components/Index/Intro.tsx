@@ -8,8 +8,8 @@ import ImageWithFallback from '../../src/ImageWithFallback';
 
 const Intro = ({host}:{host:string}) => {
     const fetcher = (url: string) => fetch(url).then((res) => res.json());
-    const { data, isError, isLoading } = useQuery('Intro', () => fetcher(`http://${host}/api/products/20`))
-    const { data: watch, isError: error, isLoading: loading } = useQuery('MissingIntro', () => fetcher(`http://${host}/api/products/21`))
+    const { data, isError, isLoading } = useQuery('Intro', () => fetcher(`https://${host}/api/products/20`))
+    const { data: watch, isError: error, isLoading: loading } = useQuery('MissingIntro', () => fetcher(`https://${host}/api/products/21`))
     if (isError) return <div>an error has occured.</div>;
     if (error) return <div>an error has occured.</div>;
     if (isLoading || loading) return <div style={{ display: "flex", width: "60vw", height: "40vw", justifyContent: "space-between", alignItems: 'center', margin: 'auto' }} ><CircularProgress size="5em" /><CircularProgress size="7em" /><CircularProgress size="5em" /></div>;

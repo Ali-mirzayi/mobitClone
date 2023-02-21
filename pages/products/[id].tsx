@@ -42,12 +42,11 @@ type props = {
 }
 
 function Product({ data,host }: any) {
-    const product = data[0];
+    const product = data;
     const colors = ["white", "blue", "pink"];
     const [rating, setRating] = useState(1);
     const [width, setWidth] = useState(30);
     const [color, setColor] = useState(colors[0]);
-    // console.log(product);
     useEffect(() => {
         setRating(() => Math.floor(Math.random() * (40) + 10) / 10);
     }, []);
@@ -122,7 +121,7 @@ export default Product;
 export async function getServerSideProps(context: any) {
     const { params } = context;
     const  host  = context.req.headers.host;
-    const response = await axios.get(`http://localhost:3000/api/products/${params.id}`)
+    const response = await axios.get(`https://api.escuelajs.co/api/v1/products/${params.id}`)
     return {
         props: {
             data: response.data,

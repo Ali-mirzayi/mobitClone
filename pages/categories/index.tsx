@@ -1,8 +1,9 @@
 import Head from 'next/head';
 import Link from "next/link";
+import axios from "axios";
 
 function CategoryList({ category }: any) {
- const categories = category?.slice(0, 5);
+    const categories = category?.slice(0, 5);
 
     return (<div style={{ width: "90vw", margin: "150px auto" }}>
         <Head>
@@ -21,7 +22,8 @@ function CategoryList({ category }: any) {
                             <hr style={{ borderWidth: ".1px" }} />
                         </div>)
                     )}
-                </div> : <div>wait...</div>}
+                </div> : <div>wait...</div>
+            }
         </div>
     </div>);
 }
@@ -29,12 +31,12 @@ function CategoryList({ category }: any) {
 export default CategoryList;
 
 export async function getServerSideProps() {
-    const response = await fetch("https://api.escuelajs.co/api/v1/categories")
-    const data = await response.json()
+    const response = await axios.get("https://api.escuelajs.co/api/v1/categories")
+    // const response = await axios.get("https://api.escuelajs.co/api/v1/products")
 
     return {
         props: {
-            category: data
+            category: response.data
         }
     }
 }

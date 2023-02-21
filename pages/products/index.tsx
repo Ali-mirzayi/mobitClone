@@ -94,9 +94,8 @@ function ProductsList({ products }: any) {
 
 export default ProductsList;
 
-export async function getServerSideProps(context:any) {
-    const  host  = context.req.headers.host;
-    const response = await axios.get(`http://${host}/api/products`)
+export async function getServerSideProps() {
+    const response = await axios.get("https://api.escuelajs.co/api/v1/products")
 
     return {
         props: {
