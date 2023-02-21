@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
@@ -29,7 +28,7 @@ export default function BasicSpeedDial({ title }: any) {
   ];
 
   return (<>
-    <Box sx={{ height: 320, position: "fixed", right: "2vw", bottom: "1vw", flexGrow: 1, zIndex: 10 }}>
+    <div style={{ height: 320, position: "fixed", right: "2vw", bottom: "1vw", flexGrow: 1, zIndex: 10 }}>
       <SpeedDial
         ariaLabel="SpeedDial basic example"
         sx={{ position: 'absolute', bottom: "3.5em", right: "16px" }}
@@ -53,7 +52,7 @@ export default function BasicSpeedDial({ title }: any) {
         ))}
 
       </SpeedDial>
-    </Box>
+    </div>
     <SimpleSnackbar text={pageURL} useOpen={[open, setOpen]} />
   </>
   );

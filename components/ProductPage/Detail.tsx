@@ -11,7 +11,7 @@ export default function Detail(props: any) {
     }, []);
 
     return (
-        <div style={{margin:"25px 10px"}}>
+        <div style={{ margin: "25px 10px" }}>
             {product.title}
             <Divider sx={{ margin: "0 20px" }}>{`product-${product.id}`}</Divider>
             <div style={{ display: "flex", justifyContent: "space-between" }}>

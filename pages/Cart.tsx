@@ -2,7 +2,8 @@ import Head from 'next/head';
 import React from 'react';
 import { useRecoilState, useResetRecoilState } from 'recoil';
 import { Products } from '../Atoms';
-import { Box, Button } from "@mui/material";
+import Paper from "@mui/material/Paper";
+import Button from "@mui/material/Button";
 import styles from '../styles/Cart/Cart.module.css';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import PercentSharpIcon from '@mui/icons-material/PercentSharp';
@@ -110,19 +111,19 @@ function Cart() {
                         <section className={styles.counter}>
                             <div style={{ margin: "1rem" }}>
                                 <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end" }}>
-                                    <span style={{ textDecoration: 'line-through', fontSize: "17px" }}>{item.price * (100 + item.id) / 100}</span>
-                                    <Box sx={{ backgroundColor: 'error.light', color: "#ffffff" }} className={styles.disCount}>
-                                        <PercentSharpIcon sx={{ fontSize: "14px" }} />
-                                        <span style={{ fontSize: '17px' }}>{item.id}</span>
-                                    </Box>
+                                    <span dir="rtl" style={{ textDecoration: 'line-through', fontSize: "17px" }}>{item.price * (100 + item.id) / 100}<span>&ensp;دلار</span></span>
+                                    <Paper sx={{ backgroundColor: 'error.light', color: "#ffffff" }} className={styles.disCount}>
+                                        <PercentSharpIcon sx={{ fontSize: "17px" }} />
+                                        <span style={{ fontSize: '20px' }}>{item.id}</span>
+                                    </Paper>
                                 </div>
-                                <div dir="rtl" style={{ textAlign: 'left' }}><span style={{ fontSize: "20px" }}>{item.price}</span><span>&ensp;تومان</span></div>
+                                <div dir="rtl" style={{ textAlign: 'left' }}><span style={{ fontSize: "30px" }}>{item.price}</span><span style={{ fontSize: "25px" }}>&ensp;دلار</span></div>
                             </div>
-                            <Box className={styles.flex} sx={{ backgroundColor: 'grey.A400', borderRadius: '0.5rem' }}>
+                            <Paper className={styles.flex} sx={{ backgroundColor: 'grey.A400', borderRadius: '0.5rem' }}>
                                 <div onClick={() => increment(i)} className={styles.flex} style={{ cursor: 'pointer', width: '2.5rem', height: '2.5rem', fontSize: '2.5rem' }}>+</div>
                                 <div className={styles.flex} style={{ width: '2.5rem', height: '2.5rem', fontSize: '2rem' }}>{product[i].count}</div>
-                                <div onClick={() => decrement(i)} className={styles.flex} style={{ cursor: 'pointer', width: '2.5rem', height: '2.5rem' }}><Box sx={{ width: '33.33%', height: '0.175rem', backgroundColor: 'grey.A100' }} /></div>
-                            </Box>
+                                <div onClick={() => decrement(i)} className={styles.flex} style={{ cursor: 'pointer', width: '2.5rem', height: '2.5rem' }}><Paper sx={{ width: '33.33%', height: '0.175rem', backgroundColor: 'grey.A100' }} /></div>
+                            </Paper>
                         </section>
                     </div>
                     <hr />
@@ -132,14 +133,14 @@ function Cart() {
                 <div />
                 :
                 <div>
-                    <Box sx={{ backgroundColor: 'grey.100', margin: '30px auto 100px', width: '90%', borderRadius: '10px', padding: '10px' }}>
+                    <Paper sx={{ backgroundColor: 'grey.100', margin: '30px auto 100px', width: '90%', borderRadius: '10px', padding: '10px' }}>
                         <div className={styles.flex1}>
                             <div>مبلغ کالا</div>
-                            <div>{price()}تومان</div>
+                            <div>{price()}دلار</div>
                         </div>
                         <div className={styles.flex1} style={{ color: '#ff6b6b' }}>
                             <div>تخفیف</div>
-                            <div>{advantage()}تومان</div>
+                            <div>{advantage()}دلار</div>
                         </div>
                         <div className={styles.flex1}>
                             <div>هزینه ارسال</div>
@@ -147,16 +148,16 @@ function Cart() {
                         </div>
                         <div className={styles.flex1}>
                             <div>مبلغ قابل پرداخت</div>
-                            <div>{payment()}تومان</div>
+                            <div>{payment()}دلار</div>
                         </div>
-                    </Box>
-                    <Box sx={{ backgroundColor: "grey.100" }} className={styles.payment}>
+                    </Paper>
+                    <Paper sx={{ backgroundColor: "grey.100" }} className={styles.payment}>
                         <div style={{ direction: 'rtl' }}>
                             <div>مبلغ قابل پرداخت</div>
-                            <div style={{ textAlign: "center", fontSize: 20 }}>{payment()}تومان</div>
+                            <div style={{ textAlign: "center", fontSize: 20 }}>{payment()}دلار</div>
                         </div>
                         <Button sx={{ backgroundColor: "info.main", "&:hover": { backgroundColor: "grey.900" }, color: "white", width: "40vw", padding: "2px" }}><h2 style={{ margin: 0 }}>ادامه</h2></Button>
-                    </Box>
+                    </Paper>
                 </div>}
         <Modal useOpen={[open, setOpen]} removeItem={() => removeItem(index)} />
     </div>);

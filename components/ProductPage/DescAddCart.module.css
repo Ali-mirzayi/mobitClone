@@ -3,13 +3,13 @@
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
-    width: 12rem;
+    width: 14rem;
     position: sticky;
-    top: 90px;
+    top: 140px;
     z-index: 4;
-    padding: 20px;
+    padding: 30px 5px;
     border-radius: 10px;
-    margin:50px auto;
+    margin: 50px auto;
     left: 0;
     right: 0;
 }

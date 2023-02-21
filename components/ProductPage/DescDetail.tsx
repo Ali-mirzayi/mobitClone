@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import Divider from "@mui/material/Divider";
 import CheckIcon from '@mui/icons-material/Check';
 import styles from "./Detail.module.css";
+import Paper from "@mui/material/Paper";
 
 export default function DescDetail(props: any) {
     const { product, color, setColor, rating, setRating, colors } = props;
@@ -11,9 +12,9 @@ export default function DescDetail(props: any) {
     }, []);
 
     return (
-        <div style={{margin:"10px 70px",fontSize:"25px"}}>
+        <Paper sx={{ margin: "10px 20px 10px 110px", fontSize: "25px", padding: "0.9rem", borderRadius: "10px", lineHeight: 2 }}>
             {product.title}
-            <Divider sx={{ margin: "0 20px" }}>{`product-${product.id}`}</Divider>
+            <Divider sx={{ margin: "0 20px", borderWidth: "1px" }}>{`product-${product.id}`}</Divider>
             <div style={{ display: "flex", justifyContent: "space-between" }}>
                 <span>brand:</span>
                 <span>something</span>
@@ -26,7 +27,7 @@ export default function DescDetail(props: any) {
                 <span>rating:</span>
                 <span>{rating}</span>
             </div>
-            <Divider sx={{ margin: "0 20px" }} />
+            <Divider sx={{ margin: "0 20px", borderWidth: "1px" }} />
             <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                 <span style={{ margin: "5px" }}>color:</span>
                 <span style={{ fontSize: "30px", margin: "5px" }}>{color}</span>
@@ -44,6 +45,6 @@ export default function DescDetail(props: any) {
                     )
                 })}
             </div>
-        </div>
+        </Paper>
     )
 }

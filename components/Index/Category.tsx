@@ -1,4 +1,5 @@
-import { CircularProgress, Typography, Box } from "@mui/material";
+import { CircularProgress, Typography } from "@mui/material";
+import Paper from "@mui/material/Paper";
 import Link from "next/link";
 import ImageWithFallback from "../../src/ImageWithFallback";
 import styles from '../../styles/Category.module.css';
@@ -44,8 +45,8 @@ function Category() {
     //sometime this api create special item6 and sometime this item will make errors including filtering in iran
     const categories = data?.slice(0, 5);
 
-    return (<><section>
-        <Box className={styles.scrollmenu} sx={{ '&::-webkit-scrollbar': { backgroundColor: 'grey.500' }, '&::-webkit-scrollbar-thumb': { backgroundColor: 'grey.400' } }} dir="rtl">
+    return (<section>
+        <Paper className={styles.scrollmenu} sx={{ '&::-webkit-scrollbar': { backgroundColor: 'grey.500' }, '&::-webkit-scrollbar-thumb': { backgroundColor: 'grey.400' } ,backgroundColor:"transparent" }} elevation={0} dir="rtl">
             {categories?.map((item: Arguments) => (
                 <Link key={item.id} href={`/categories/${item.name}`} passHref>
                     <div className={styles.container}>
@@ -56,9 +57,8 @@ function Category() {
                     </div>
                 </Link>
             ))}
-        </Box>
-    </section></>);
+        </Paper>
+    </section>);
 }
 
 export default Category;
-// style={{width:"120%",height:"80%"}} 

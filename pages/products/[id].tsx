@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import dynamic from 'next/dynamic'
+import dynamic from 'next/dynamic';
 import styles from "../../styles/Products/Product.module.css";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -14,28 +14,47 @@ import axios from 'axios';
 import Detail from '../../components/ProductPage/Detail';
 import DescAddCart from '../../components/ProductPage/DescAddCart';
 import DescDetail from '../../components/ProductPage/DescDetail';
+import Skeleton from '@mui/material/Skeleton';
+
 
 const Intro = dynamic(
     () => import('../../components/ProductPage/Slider'),
-    { loading: () => <p>Loading caused by client page transition ...</p>, ssr: false }
+    { loading: () => <Skeleton variant='rectangular' sx={{ width: "40vw", height: "30vw", margin: "auto" }} />, ssr: false }
 );
 
-function Product({ product }: any) {
+type props = {
+    "id": string,
+    "title": string,
+    "price": string,
+    "description": string,
+    "images": [
+        string
+    ],
+    "creationAt": string,
+    "updatedAt": string,
+    "category": {
+        "id": string,
+        "name": string,
+        "image": string,
+        "creationAt": string,
+        "updatedAt": string
+    }
+}
+
+function Product({ data,host }: any) {
+    const product = data[0];
     const colors = ["white", "blue", "pink"];
     const [rating, setRating] = useState(1);
-    const [width, setWidth] = useState(200);
+    const [width, setWidth] = useState(30);
     const [color, setColor] = useState(colors[0]);
-
-    console.log(width);
-
+    // console.log(product);
     useEffect(() => {
         setRating(() => Math.floor(Math.random() * (40) + 10) / 10);
     }, []);
-
     // mock data i use to readmore section
     const title = `about ${product.title}`
     const readmore = `${product.description}Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora esse, tempore aspernatur, eveniet quos beatae, ipsam explicabo non omnis voluptatum numquam fuga quisquam. Impedit architecto cupiditate deserunt assumenda deleniti nostrum.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora esse, tempore aspernatur, eveniet quos beatae, ipsam explicabo non omnis voluptatum numquam fuga quisquam. Impedit architecto cupiditate deserunt assumenda deleniti nostrum.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora esse, tempore aspernatur, eveniet quos beatae, ipsam explicabo non omnis voluptatum numquam fuga quisquam. Impedit architecto cupiditate deserunt assumenda deleniti nostrum.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora esse, tempore aspernatur, eveniet quos beatae, ipsam explicabo non omnis voluptatum numquam fuga quisquam. Impedit architecto cupiditate deserunt assumenda deleniti nostrum.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora esse, tempore aspernatur, eveniet quos beatae, ipsam explicabo non omnis voluptatum numquam fuga quisquam. Impedit architecto cupiditate deserunt assumenda deleniti nostrum.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora esse, tempore aspernatur, eveniet quos beatae, ipsam explicabo non omnis voluptatum numquam fuga quisquam. Impedit architecto cupiditate deserunt assumenda deleniti nostrum.`
-    return (<div style={{ marginBottom: 50 }}>
+    return (<div style={width >= 850 ? { marginTop: "-110px", marginBottom: 50 } : { marginBottom: 50 }}>
         {product ?
             <div>
                 <Head>
@@ -47,21 +66,19 @@ function Product({ product }: any) {
                 <div style={{ padding: "0 10px" }}>
                     <SubNav />
                     <div>
-                        <div style={{ display: "dflex", justifyContent: "center", alignItems: "center" }}>
-                            <div style={{ width: "12rem" }}>
-                                {width >= 900 && <DescAddCart product={product} />}
+                        <div style={width >= 1000 ? { display: "flex" } : { display: "flex", flexDirection: "column" }}>
+                            <div style={{ width: "14rem" }}>
+                                {width >= 1000 && <DescAddCart product={product} />}
                             </div>
                             <div>
+                                <h1 className={styles.category}><Link href={`/categories/${product.category.name}`}>{product.category.name}</Link></h1>
                                 <div className={styles.Intro}>
                                     <div style={{ width: "fit-content", margin: "20px auto" }}>
-                                        <Link href={`/categories/${product.category.name}`}><h2 className={styles.category}>{product.category.name}</h2></Link>
                                         <Intro product={product} setWidth={setWidth} />
                                     </div>
                                     {
-                                        width < 900 && <Detail product={product} color={color} setColor={setColor} rating={rating} setRating={setRating} colors={colors} />
-                                    }
-                                    {
-                                        width >= 900 && <DescDetail product={product} color={color} setColor={setColor} rating={rating} setRating={setRating} colors={colors} />
+                                        width >= 1000 ? <DescDetail product={product} color={color} setColor={setColor} rating={rating} setRating={setRating} colors={colors} /> :
+                                            <Detail product={product} color={color} setColor={setColor} rating={rating} setRating={setRating} colors={colors} />
                                     }
                                 </div>
                                 <div id="nav">
@@ -83,14 +100,14 @@ function Product({ product }: any) {
                         <div id="nav2">
                             <div id="three">
                                 <h2 style={{ textAlign: "center" }}>Similar Items</h2>
-                                <SimilarItems category={product.category.id} />
+                                <SimilarItems host={host} category={product.category.id} />
                             </div>
                         </div>
                     </div>
                 </div>
                 <BasicSpeedDial title={product.title} />
                 {
-                    width < 900 && <AddCart product={product} />
+                    width < 1000 && <AddCart product={product} />
                 }
             </div> :
             <div>
@@ -104,10 +121,12 @@ export default Product;
 
 export async function getServerSideProps(context: any) {
     const { params } = context;
-    const response = await axios.get(`https://api.escuelajs.co/api/v1/products/${params.id}`)
+    const  host  = context.req.headers.host;
+    const response = await axios.get(`http://localhost:3000/api/products/${params.id}`)
     return {
         props: {
-            product: response.data,
+            data: response.data,
+            host
         },
     }
 }

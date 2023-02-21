@@ -1,16 +1,17 @@
 import { createTheme } from "@mui/material/styles";
 import { blueGrey, teal, blue } from "@mui/material/colors";
-import type { AppProps } from "next/app";
 
 const lightTheme = createTheme({
   palette: {
     mode: "light",
     background: {
-      paper: blueGrey[50],
-      default: teal[50],
+      paper: blueGrey[100],
+      default: "#e8fff8",
     },
     primary: {
-      main: teal[500],
+      light: blue[600],
+      main: blue[500],
+      dark: blue[400]
     },
     common: {
       white: blueGrey[50],
@@ -26,9 +27,9 @@ const lightTheme = createTheme({
       500: blueGrey[400],
       //chip esp
       700: blueGrey[900],
-      A100:blueGrey[900],
-      A200:blueGrey[50],
-      A400:blueGrey[200]
+      A100: blueGrey[900],
+      A200: blueGrey[50],
+      A400: blueGrey[200]
     },
   },
   typography: {
@@ -41,11 +42,12 @@ const darkTheme = createTheme({
     mode: "dark",
     background: {
       paper: blueGrey[500],
-      // default: teal[900],
       default: '#000428',
     },
     primary: {
-      main: teal[500],
+      light: blue[500],
+      main: blue[500],
+      dark: blue[700]
     },
     common: {
       white: blueGrey[500],
@@ -63,7 +65,7 @@ const darkTheme = createTheme({
       A100: blueGrey[50],
       A200: blueGrey[900],
       A400: blueGrey[800]
-    },info:{
+    }, info: {
       main: blue[800]
     }
   },

@@ -1,77 +1,104 @@
-.container{
-    margin:100px auto;
+.container {
+    margin: 100px auto;
     font-size: 25px;
     width: 80vw;
 }
 
-.paper{
-    padding:20px 0;
+.paper {
+    padding: 20px 0;
     margin: auto;
-    margin-top:50px;
+    margin-top: 50px;
+    justify-content: space-between;
+    border-radius: 15px;
 }
 
-.input{
+.Canvas {
+    width: 300px;
+    height: 300px;
+    margin: -100px auto 0;
+}
+
+.input {
     width: 200px;
-    margin:5px 0;
+    margin: 5px 0;
 }
 
-.passInput{
-    display:flex;
-    position:relative;
-    align-items:center;
-    width:200px;
-    margin:5px 0;
+.passInput {
+    display: flex;
+    position: relative;
+    align-items: center;
+    width: 200px;
+    margin: 5px 0;
 }
 
-.label{
-    width:fit-content;
-    margin:10px auto;
-    cursor:pointer;
+.label {
+    width: fit-content;
+    margin: 10px auto;
+    cursor: pointer;
 }
 
-.label:hover{
-    transition:all .5s ease;
+.label:hover {
+    transition: all .5s ease;
     scale: 1.1;
 }
 
-.signup{
-   font-size:20px;
-   padding:5px;
-}
+@media only screen and (min-width:450px) {
 
-.signup:hover{
-    border-bottom:3px solid black;
-    padding:3px;
-}
-
-@media only screen and (min-width:450px){
-    .input , .passInput{
+    .input,
+    .passInput {
         width: 300px;
     }
-    .paper{
+
+    .paper {
         padding: 20px;
         width: 80vw;
     }
 }
 
-@media only screen and (min-width:700px){
-
-    .paper{
+@media only screen and (min-width:700px) {
+    .paper {
         padding: 20px;
         width: 60vw;
     }
+
+    .Canvas {
+        width: 400px;
+        height: 400px;
+    }
 }
 
-@media only screen and (min-width:850px){
-    .paper{
+@media only screen and (min-width:850px) {
+    .paper {
         padding: 30px;
         width: 50vw;
     }
 }
 
-@media only screen and (min-width:1000px){
-    .paper{
+@media only screen and (min-width:1000px) {
+    .paper {
         padding: 40px;
-        width: 40vw;
+        width: 70vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row-reverse;
+    }
+
+    .Canvas {
+        width: 450px;
+        height: 450px;
+        margin: auto;
+    }
+}
+
+@media only screen and (min-width:1150px) {
+
+    .input,
+    .passInput {
+        width: 350px;
+    }
+
+    .btn {
+        display: flex;
     }
 }

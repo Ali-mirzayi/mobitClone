@@ -12,7 +12,7 @@
   height: 15vw;
 }
   
-  @media only screen and (min-width: 800px){
+  @media only screen and (min-width: 900px){
     .mySwiper {
       width: 40vw;
       height: 27vw;
@@ -21,9 +21,6 @@
         width: 40vw;
         height: 9vw;
     }
-  }
-
-  @media only screen and (min-width: 800px) {
     .imgcontainer {
       width: 10.5vw;
       height: 7vw;

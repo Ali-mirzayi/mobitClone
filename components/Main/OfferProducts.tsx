@@ -41,7 +41,7 @@ function OfferProducts() {
 
     return (<section>
         <CountdownTimer />
-        <Box>
+        <div>
             <Swiper
                 dir="rtl"
                 lazy={true}
@@ -50,7 +50,7 @@ function OfferProducts() {
                 modules={[Lazy, Mousewheel, Navigation]}
                 breakpoints={{
                     "@0.00": {
-                        slidesPerView: 1,
+                        slidesPerView: 2,
                         spaceBetween: 10,
                     },
                     "@0.50": {
@@ -75,7 +75,7 @@ function OfferProducts() {
                     </SwiperSlide>
                 ))}
             </Swiper>
-        </Box>
+        </div>
     </section>);
 }
 

@@ -1,5 +1,6 @@
 import PercentSharpIcon from '@mui/icons-material/PercentSharp';
-import { Box, Button } from "@mui/material";
+import Button from "@mui/material/Button";
+import Paper from "@mui/material/Paper";
 import styles from "./DescAddCart.module.css";
 import { useRecoilState, useResetRecoilState } from 'recoil';
 import { Products } from '../../Atoms';
@@ -41,18 +42,18 @@ export default function DescAddCart({ product }: any) {
     }
 
     return (<>
-        <Box className={styles.container} sx={{ backgroundColor: "grey.100" }}>
-            <div style={{display:"flex",alignItems:"center"}}>
-                <Box sx={{ backgroundColor: 'error.light', color: "#ffffff" }} className={styles.disCount}>
+        <Paper className={styles.container} sx={{ backgroundColor: "grey.100", lineHeight: 1.8 }}>
+            <div style={{ display: "flex", alignItems: "center" }}>
+                <Paper sx={{ backgroundColor: 'error.light', color: "#ffffff" }} className={styles.disCount}>
                     <PercentSharpIcon sx={{ fontSize: "20px" }} />
                     <span style={{ fontSize: '20px' }}>{product.id}</span>
-                </Box>
+                </Paper>
                 <div>
-                    <span style={{ textDecoration: 'line-through', fontSize: "17px", direction: "rtl" }}>{product.price * (100 + product.id) / 100}&ensp;تومان</span>
-                    <div dir="rtl"><span style={{ fontSize: "20px" }}>{product.price}</span><span>&ensp;تومان</span></div>
+                    <div dir="rtl"><span style={{ textDecoration: 'line-through', fontSize: "17px" }}>{product.price * (100 + product.id) / 100}<span>&ensp;دلار</span></span></div>
+                    <div dir="rtl"><span style={{ fontSize: "30px" }}>{product.price}</span><span style={{ fontSize: "25px" }}>&ensp;دلار</span></div>
                 </div>
             </div>
-            <Button onClick={Send} sx={{ backgroundColor: "#1d87da", "&:hover": { backgroundColor: "#205e8e" }, color: "#ffffff", borderRadius: "10px", margin: "10px" }}><p style={{ fontSize: "1.1rem", margin: "0" }}>{active}</p></Button>
-        </Box>
+            <Button onClick={Send} sx={{ backgroundColor: "#1d87da", "&:hover": { backgroundColor: "#205e8e" }, color: "#ffffff", borderRadius: "10px", margin: "10px 0", padding: "10px" }}><p style={{ fontSize: "1.3rem", margin: "0" }}>{active}</p></Button>
+        </Paper>
     </>);
 };

@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import styles from "../../styles/Categories/CategoryId.module.css";
-import { Box } from '@mui/material';
 import ImageWithFallback from "../../src/ImageWithFallback";
 import ProductBox from "../../src/ProductBox";
 import axios from 'axios';
@@ -26,9 +25,9 @@ function Category({ category }: any) {
                         <p style={{ width: "70vw", margin: "20px auto" }}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam odit nostrum officiis sunt voluptate fugiat, dolores reprehenderit ut doloribus totam ex perferendis sapiente ipsa tempore repellat reiciendis aperiam amet? Hic.</p>
                         <div className={styles.productCategory}>
                             {category?.map((item: any) => (
-                                <Box key={item.id} dir='rtl'>
+                                <div key={item.id} dir='rtl'>
                                     <ProductBox item={item} />
-                                </Box>
+                                </div>
                             ))}
                         </div>
                     </div> :

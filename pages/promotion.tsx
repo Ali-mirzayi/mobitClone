@@ -6,7 +6,6 @@ import MoneyOffIcon from '@mui/icons-material/MoneyOff';
 import StarIcon from '@mui/icons-material/Star';
 import CurrencyBitcoinIcon from '@mui/icons-material/CurrencyBitcoin';
 import { useQuery } from 'react-query';
-import Box from '@mui/material/Box';
 import ProductBox from "../src/ProductBox";
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
@@ -127,9 +126,9 @@ function Offers({ products }: any) {
             </div>
             <div className={styles.productCategory}>
                 {warn?.map((item: any) => (
-                    <Box key={item.id} dir='rtl'>
+                    <div key={item.id} dir='rtl'>
                         <ProductBox item={item} />
-                    </Box>
+                    </div>
                 ))}
             </div>
         </div>
@@ -138,8 +137,9 @@ function Offers({ products }: any) {
 
 export default Offers;
 
-export async function getServerSideProps() {
-    const response = await axios.get("https://api.escuelajs.co/api/v1/products")
+export async function getServerSideProps(context: any) {
+    const  host  = context.req.headers.host;
+    const response = await axios.get(`http://${host}/api/products`);
 
     return {
         props: {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import Cookies from "js-cookie";
 import { Paper, IconButton } from "@mui/material";
 import Head from "next/head";
@@ -17,6 +17,14 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls, Stage, Html, useProgress } from "@react-three/drei";
+import Model from "../components/Login/Jordan";
+
+function Loader() {
+    const { active, progress, errors, item, loaded, total } = useProgress();
+    return <Html center>{progress} % loaded</Html>;
+}
 
 type UserSubmitForm = {
     email: string;
@@ -89,9 +97,9 @@ function Login() {
             <meta name="description" content="its my mobit clone" />
         </Head>
         <div className={styles.container}>
-            <h1 className={styles.label}>GTA Home</h1>
+            <h1>GTA Home</h1>
             <Paper className={styles.paper} sx={{ backgroundColor: "grey" }}>
-                <form onSubmit={handleSubmit(onSubmit)} dir="rtl" style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                <form onSubmit={handleSubmit(onSubmit)} dir="rtl" style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", marginTop: "30px" }}>
                     <CustomInput
                         variant="outlined"
                         type="email"
@@ -127,9 +135,21 @@ function Login() {
                             {visible ? <VisibilityOff /> : <Visibility />}
                         </IconButton>
                     </div>
-                    <Button type="submit" sx={{ "&:hover": { backgroundColor: 'blue' }, display: "block", margin: 2, backgroundColor: 'blueviolet', fontSize: "20px" }} >ورود به حساب</Button>
-                    <Link href="/signup"><p className={styles.signup}>ثبت نام</p></Link>
+                    <div className={styles.btn}>
+                        <Button type="submit" sx={{ "&:hover": { backgroundColor: 'primary.dark' }, display: "block", margin: 2, backgroundColor: 'primary.light', fontSize: "20px", width: "150px", color: "grey.A100" }} >ورود به حساب</Button>
+                        <Link href="/signup" target="_blank"><Button sx={{ "&:hover": { backgroundColor: 'grey.500' }, display: "block", margin: 2, backgroundColor: 'grey.A400', fontSize: "20px", width: "150px", color: "grey.A100" }}>ثبت نام</Button></Link>
+                    </div>
                 </form>
+                <div className={styles.Canvas} >
+                    <Canvas style={{ width: "100%", height: "100%" }} shadows camera={{ position: [0, 0, -10] }}>
+                        <Suspense fallback={<Loader />}>
+                            <OrbitControls enableZoom={false} makeDefault minPolarAngle={Math.PI / 2.5} maxPolarAngle={Math.PI / 2.5} />
+                            <Stage intensity={1.5} environment="dawn" adjustCamera={1.3}>
+                                <Model scale={0.01} />
+                            </Stage>
+                        </Suspense>
+                    </Canvas>
+                </div>
             </Paper>
             <div>
                 <Dialog
@@ -148,15 +168,15 @@ function Login() {
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>
-                        <div style={{margin:"auto"}}>
-                            <Link href="/signup"><Button sx={{backgroundColor:"grey.300","&:hover": { backgroundColor: "grey.900" },color:"info.main"}}><h4 style={{margin:0}}>ثبت نام</h4></Button></Link>
-                            <Button onClick={handleClose} autoFocus sx={{backgroundColor:"grey.300","&:hover": { backgroundColor: "grey.900" },margin:"10px"}}><h4 style={{margin:0}}>بازگشت</h4></Button>
+                        <div style={{ margin: "auto" }}>
+                            <Link href="/signup"><Button sx={{ backgroundColor: "grey.300", "&:hover": { backgroundColor: "grey.900" }, color: "info.main" }}><h4 style={{ margin: 0 }}>ثبت نام</h4></Button></Link>
+                            <Button onClick={handleClose} autoFocus sx={{ backgroundColor: "grey.300", "&:hover": { backgroundColor: "grey.900" }, margin: "10px" }}><h4 style={{ margin: 0 }}>بازگشت</h4></Button>
                         </div>
                     </DialogActions>
                 </Dialog>
             </div>
         </div>
-    </section>);
+    </section >);
 }
 
 export default Login;

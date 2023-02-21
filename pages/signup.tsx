@@ -7,12 +7,16 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import React from "react";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-import styles from '../styles/Login/Login.module.css';
+import styles from '../styles/signup/Signup.module.css';
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
+import AnimatedSphere from "../components/Login/AnimatedSphere";
 
 type UserSubmitForm = {
     email: string;
     fullname: string;
     password: string;
+    confirmPassword: string;
 };
 
 function Signup() {
@@ -20,15 +24,19 @@ function Signup() {
 
     const validationSchema = Yup.object().shape({
         email: Yup.string()
-          .required('ایمیل الزامی است.')
-          .email('ایمیل نامعتبر است.'),
+            .required('ایمیل الزامی است.')
+            .email('ایمیل نامعتبر است.'),
         fullname: Yup.string()
-          .required('نام کاربری الزامی است.'),
+            .required('نام کاربری الزامی است.'),
         password: Yup.string()
-          .required('رمز عبور الزامی است.')
-          .min(8, 'پسورد کوتاه است حداقل 8 کاراکتر')
-          .max(20, 'پسورد طولانی است حداکثر 20 کاراکتر'),
-      });
+            .required('رمز عبور الزامی است.')
+            .min(8, 'پسورد کوتاه است حداقل 8 کاراکتر')
+            .max(20, 'پسورد طولانی است حداکثر 20 کاراکتر'),
+        confirmPassword: Yup.string()
+            .label('confirm password')
+            .oneOf([Yup.ref('password'), null], 'پسورد همخوانی ندارد')
+            .required('فیلد الزامی است.')
+    });
 
     const {
         register,
@@ -41,16 +49,17 @@ function Signup() {
         }
     );
 
-    const onSubmit = async(data: any) => {
+    const onSubmit = async (data: any) => {
         try {
             await fetch('https://api.dotenx.com/user/management/project/uXcyPyNEbyI6Bdd4/register', {
-            method: 'POST',
-            body: JSON.stringify(data)
+                method: 'POST',
+                body: JSON.stringify(data)
             })
-            .then(res => res.json())}
-        catch (error:any) {
-                throw new Error(`failed to signup ${error.message}`)
-            }
+                .then(res => res.json())
+        }
+        catch (error: any) {
+            throw new Error(`failed to signup ${error.message}`)
+        }
         reset();
     }
 
@@ -61,6 +70,7 @@ function Signup() {
     //customInput dosent assigned register
     const { ref: refemail, ...objemail } = register('email');
     const { ref: refpassword, ...objpassword } = register('password');
+    const { ref: refconfirmPassword, ...objconfirmPassword } = register('confirmPassword');
     const { ref: reffullname, ...objfullname } = register('fullname');
 
     return (<section>
@@ -71,9 +81,49 @@ function Signup() {
             <meta name="description" content="its my mobit clone" />
         </Head>
         <div className={styles.container}>
-            <h1 style={{textAlign:'center'}}>GTA Home</h1>
+            <h1 style={{ textAlign: 'center' }}>GTA Home</h1>
+            <div className={styles.sphere} style={{ height: "200px", width: "200px", position: "absolute", top: "120px",zIndex:-10 }}>
+                <Canvas style={{ height: "100%" }}>
+                    <OrbitControls enableZoom={false} makeDefault />
+                    <ambientLight intensity={0.5} />
+                    <directionalLight position={[-2, 5, 2]} intensity={1} />
+                    <AnimatedSphere speed={3.5} color={"#8352FD"} scale={2.8} distort={0.3} />
+                </Canvas>
+            </div>
+            <div style={{ height: "300px", width: "300px", position: "absolute", right: "60px", zIndex: -20 }}>
+                <Canvas style={{ height: "100%" }}>
+                    <OrbitControls enableZoom={false} />
+                    <ambientLight intensity={0.5} />
+                    <directionalLight position={[-2, 5, 2]} intensity={1} />
+                    <AnimatedSphere speed={3.5} color={"orange"} scale={1.8} distort={0.6} />
+                </Canvas>
+            </div>
+            <div style={{ height: "200px", width: "200px", position: "absolute", left: "0px", bottom: "0px", zIndex: -20 }}>
+                <Canvas style={{ height: "100%" }}>
+                    <OrbitControls enableZoom={false} />
+                    <ambientLight intensity={0.5} />
+                    <directionalLight position={[-9, 5, 2]} intensity={1} />
+                    <AnimatedSphere speed={3.5} color={"red"} scale={1.5} distort={0.4} />
+                </Canvas>
+            </div>
+            <div style={{ height: "200px", width: "200px", position: "absolute", right: "20px", top: "140px", zIndex: -20 }}>
+                <Canvas style={{ height: "100%" }}>
+                    <OrbitControls enableZoom={false} />
+                    <ambientLight intensity={0.3} />
+                    <directionalLight position={[12, 2, 7]} intensity={1} />
+                    <AnimatedSphere speed={3.5} color={"#333"} scale={1.9} distort={0.5} />
+                </Canvas>
+            </div>
+            <div style={{ height: "200px", width: "200px", position: "absolute", bottom: "10px", right: "10px", zIndex: -20 }}>
+                <Canvas style={{ height: "100%" }}>
+                    <OrbitControls enableZoom={false} />
+                    <ambientLight intensity={0.5} />
+                    <directionalLight position={[9, 9, 2]} intensity={1} />
+                    <AnimatedSphere speed={3.5} color={"yellow"} scale={1.8} distort={0.3} />
+                </Canvas>
+            </div>
             <Paper className={styles.paper}>
-                <form onSubmit={handleSubmit(onSubmit)} dir="rtl" style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
+                <form onSubmit={handleSubmit(onSubmit)} dir="rtl" style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
                     <CustomInput
                         variant="outlined"
                         type="email"
@@ -86,7 +136,7 @@ function Signup() {
                         label="ایمیل "
                         autoComplete="email"
                         className={styles.input}
-                      />
+                    />
                     <CustomInput
                         variant="outlined"
                         type="text"
@@ -111,18 +161,40 @@ function Signup() {
                             inputRef={refpassword}
                             error={!!errors.password}
                             helperText={errors.password ? errors.password.message : null}
-                            sx={{width:"100%"}}
+                            sx={{ width: "100%" }}
                         />
                         <IconButton
                             aria-label="toggle password visibility"
                             onClick={handleClickShowPassword}
                             onMouseDown={handleMouseDownPassword}
-                            sx={{ color: 'black',position: 'absolute',left:'12px',top:'9px'}}
+                            sx={{ color: 'black', position: 'absolute', left: '12px', top: '9px' }}
                         >
                             {visible ? <VisibilityOff /> : <Visibility />}
                         </IconButton>
                     </div>
-                    <Button type="submit" sx={{ "&:hover": { backgroundColor: '#0d47a1' }, display: "block", m: 2,backgroundColor:'blueviolet' }} >ایجاد حساب</Button>
+                    <div className={styles.passInput}>
+                        <CustomInput
+                            variant="outlined"
+                            type={visible ? 'text' : 'password'}
+                            placeholder="رمز ورود  دوباره ..."
+                            label="تایید رمز ورود"
+                            color="info"
+                            {...objconfirmPassword}
+                            inputRef={refconfirmPassword}
+                            error={!!errors.confirmPassword}
+                            helperText={errors.confirmPassword ? errors.confirmPassword.message : null}
+                            sx={{ width: "100%" }}
+                        />
+                        <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={handleClickShowPassword}
+                            onMouseDown={handleMouseDownPassword}
+                            sx={{ color: 'black', position: 'absolute', left: '12px', top: '9px' }}
+                        >
+                            {visible ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                    </div>
+                    <Button type="submit" sx={{ "&:hover": { backgroundColor: 'primary.dark' }, display: "block", margin: 2, backgroundColor: 'primary.light', fontSize: "20px", width: "200px", color: "grey.A100" }} >ایجاد حساب</Button>
                 </form>
             </Paper>
         </div>

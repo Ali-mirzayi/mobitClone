@@ -1,12 +1,8 @@
 import Head from 'next/head';
 import Link from "next/link";
-// import { useQuery } from 'react-query';
-
-// const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 function CategoryList({ category }: any) {
-    // const { data } = useQuery('categories' , () => fetcher("https://api.escuelajs.co/api/v1/categories"));
-    const categories = category?.slice(0, 5);
+ const categories = category?.slice(0, 5);
 
     return (<div style={{ width: "90vw", margin: "150px auto" }}>
         <Head>

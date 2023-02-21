@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styles from "./Menu.module.css";
 import { useRef, useEffect } from "react";
-import { Divider } from "@mui/material";
+import Divider from "@mui/material/Divider";
 import Image from "next/image";
 
 

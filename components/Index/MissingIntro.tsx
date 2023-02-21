@@ -6,29 +6,27 @@ import ImageWithFallback from "../../src/ImageWithFallback";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
-function MissingIntro() {
-    const { data, isError, isLoading , error } = useQuery('MissingIntro', () => fetcher('https://api.escuelajs.co/api/v1/products/24'))
-    if (isError) return <div> <div>an error has occured.</div> <div>Error: {error.message}</div> </div>;
+function MissingIntro({host}:{host:string}) {
+    const { data, isError, isLoading } = useQuery('MissingIntro', () => fetcher(`http://${host}/api/products/21`))
+    if (isError) return <div>an error has occured.</div>;
     if (isLoading) return <div style={{ display: "flex", width: "60vw", height: "40vw", justifyContent: "space-between", alignItems: 'center', margin: 'auto' }} ><CircularProgress size="5em" /><CircularProgress size="5em" /></div>;
-
-    const src: any = data?.images;
 
     return (
         <section style={{ display: 'flex', justifyContent: 'space-evenly', marginTop: '20px' }}>
-           <Link href={`/categories/${data.category.name}`}>
-                <div className={styles.div}>
-                    <ImageWithFallback src={src[0]} alt='' fill className={styles.img} />
-                    <p className={styles.p}>{data.category.name}</p>
-                </div>
-            </Link>
-            <Link href={`/categories/${data.category.name}`}>
-                <div className={styles.div}>
-                    <ImageWithFallback src={src[2]} alt='' fill className={styles.img} />
-                    <p className={styles.p}>{data.category.name}</p>
-                </div>
-            </Link>
+             <Link href={`/categories/${data[0]?.category.name}`}>
+                 <div className={styles.div}>
+                     <ImageWithFallback src={data[0]?.images[0]} alt={data[0]?.title} fill className={styles.img} />
+                     <p className={styles.p}>{data[0]?.category.name}</p>
+                 </div>
+             </Link>
+             <Link href={`/categories/${data[0]?.category.name}`}>
+                 <div className={styles.div}>
+                     <ImageWithFallback src={data[0]?.images[2]} alt={data[0]?.title} fill className={styles.img} />
+                     <p className={styles.p}>{data[0]?.category.name}</p>
+                 </div>
+             </Link>
         </section>
-        );
+    );
 }
 
 export default MissingIntro;

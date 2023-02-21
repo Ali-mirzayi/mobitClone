@@ -1,11 +1,10 @@
-import type { NextPage } from 'next';
 import Head from 'next/head';
 import Intro from '../components/Index/Intro';
 import Category from '../components/Index/Category';
 import MissingIntro from '../components/Index/MissingIntro';
 import OfferProducts from '../components/Main/OfferProducts';
 
-const Home: NextPage = () => {
+const Home = ({host}:{host:string}) => {
 
   return (
     <>
@@ -15,12 +14,21 @@ const Home: NextPage = () => {
         <meta name="description" content="its my mobit clone" />
         <link rel="icon" href="/gta-home-logo.jpg" />
       </Head>
-      <Intro />
+      <Intro host={host} />
       <Category />
-      <MissingIntro />
+      <MissingIntro host={host} />
       <OfferProducts />
     </>
   )
 }
 
 export default Home
+
+export async function getServerSideProps(context: any) {
+  const  host  = context.req.headers.host;
+  return {
+      props: {
+        host
+      }
+  }
+}

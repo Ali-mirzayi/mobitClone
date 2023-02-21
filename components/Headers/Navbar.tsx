@@ -79,7 +79,7 @@ function Navar({ setDark }: props) {
         </div>
         <div className={styles.flex}>
           <Link href="/login" className={styles.item} >
-            <Chip label="ورود" sx={{ fontSize: "15px", ".MuiChip-label": { padding: "10px 1vw" } }} icon={<PersonIcon sx={{ p: "10px", paddingLeft: 0, boxSizing: "content-box", color: 'grey.300' }} />} />
+            <Chip label="ورود" sx={{ fontSize: "18px", cursor: "pointer", ".MuiChip-label": { padding: "10px 1vw" } }} icon={<PersonIcon sx={{ p: "10px", paddingLeft: 0, boxSizing: "content-box", color: 'grey.300' }} />} />
           </Link>
           <Link href="/cart" passHref>
             <IconButton sx={{ margin: "10px" }}>

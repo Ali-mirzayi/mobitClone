@@ -1,14 +1,17 @@
 .container{
-    margin-top: 10px;
-    margin: auto;
+    margin:50px auto 150px;
     font-size: 25px;
-    width: 80vw;
 }
 
 .paper{
     padding:20px 0;
     margin: auto;
     margin-top:125px;
+    /* display: none; */
+}
+
+.sphere{
+    left:-50px
 }
 
 .input{
@@ -35,10 +38,9 @@
     scale: 1.1;
 }
 
-
-@media only screen and (min-width:450px){
+@media only screen and (min-width:350px){
     .input , .passInput{
-        width: 300px;
+        width: 250px;
     }
     .paper{
         padding: 20px;
@@ -46,15 +48,18 @@
     }
 }
 
-@media only screen and (min-width:700px){
+@media only screen and (min-width:500px){
+    .input , .passInput{
+        width: 300px;
+    }
 
     .paper{
         padding: 20px;
-        width: 60vw;
+        width: 65vw;
     }
 }
 
-@media only screen and (min-width:850px){
+@media only screen and (min-width:750px){
     .paper{
         padding: 30px;
         width: 50vw;
@@ -64,6 +69,15 @@
 @media only screen and (min-width:1000px){
     .paper{
         padding: 40px;
-        width: 40vw;
+        width: 35vw;
+    }
+    .sphere{
+        left:50px
+    }
+}
+@media only screen and (min-width:1200px){
+    .paper{
+        padding: 40px;
+        width: 30vw;
     }
 }
